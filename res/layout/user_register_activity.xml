@@ -4,29 +4,29 @@
     android:layout_height="match_parent" >
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
+        android:id="@+id/radioGroup_sex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/radioGroup1"
+        android:layout_alignTop="@+id/radioGroup_education"
         android:layout_marginRight="18dp" >
 
         <RadioButton
-            android:id="@+id/radio3"
+            android:id="@+id/radio_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/text_sex_male" />
 
         <RadioButton
-            android:id="@+id/radio4"
+            android:id="@+id/radio_female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_sex_female" />
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/editText_trueName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -38,91 +38,91 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editText_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/editText_trueName"
         android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="@string/text_email"
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editText_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/editText_email"
         android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="@string/text_age"
         android:inputType="number" />
 
     <RadioGroup
-        android:id="@+id/radioGroup1"
+        android:id="@+id/radioGroup_education"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/textView_education"
         android:layout_marginTop="14dp" >
 
         <RadioButton
-            android:id="@+id/radio0"
+            android:id="@+id/radio_elementary_school"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/text_elementary_school" />
 
         <RadioButton
-            android:id="@+id/radio1"
+            android:id="@+id/radio_high_school"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_high_school" />
 
         <RadioButton
-            android:id="@+id/radio2"
+            android:id="@+id/radio_graduated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_graduated" />
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textView_sex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/radioGroup1"
-        android:layout_below="@+id/editText3"
+        android:layout_alignRight="@+id/radioGroup_sex"
+        android:layout_below="@+id/editText_age"
         android:layout_marginTop="16dp"
-        android:text="@string/text_education"
+        android:text="@string/text_sex"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editText_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/radioGroup1"
+        android:layout_below="@+id/radioGroup_education"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/text_username" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/editText_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText5"
+        android:layout_below="@+id/editText_username"
         android:ems="10"
         android:hint="@string/text_password"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -131,13 +131,14 @@
         android:text="@string/text_register" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView_education"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/radioGroup1"
-        android:layout_alignLeft="@+id/radioGroup2"
+        android:layout_alignBaseline="@+id/textView_sex"
+        android:layout_alignBottom="@+id/textView_sex"
+        android:layout_alignParentLeft="true"
         android:layout_marginLeft="29dp"
-        android:text="@string/text_sex"
+        android:text="@string/text_education"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
