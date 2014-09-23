@@ -23,11 +23,6 @@
     <string name="text_update">Atualizar</string>
     <string name="text_edit">Editar</string>
     <string name="text_exclude">Excluir</string>
-    <string name="text_john_name">Levino Moises Paiva Magalhães Rufino Porto</string>
-    <string name="text_john_email">jonathan@gmail.com</string>
-    <string name="text_john_age">23</string>
-    <string name="text_john_education">Nível Medio</string>
-    <string name="text_john_username">JonathanRufino</string>
-    <string name="text_john_password">abc123</string>
+    <string name="text_nothing"></string>
 
 </resources>
