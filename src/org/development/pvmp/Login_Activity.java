@@ -1,9 +1,12 @@
 package org.development.pvmp;
 
+
 import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class Login_Activity extends ActionBarActivity {
 
@@ -12,6 +15,13 @@ public class Login_Activity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_activity);
 	}
+	
+    public void clickRegister (View view){
+    	
+    	Intent i = new Intent();
+    	i.setClass(this, UserRegisterActivity.class);
+    	startActivity(i);
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
