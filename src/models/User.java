@@ -2,23 +2,32 @@ package models;
 
 public class User {
 	private String name;
-	private String userName;
-	private String userPassword;
+	private String username;
+	private String password;
 	private String email;
 	private Integer age;
 	private String education;
 	private String sex;
 	
-	public User(String name, String userName, String userPassword, String email
+	public User () {
+		this.name = null;
+		this.username = null;
+		this.password = null;
+		this.email = null;
+		this.age = null;
+		this.education = null;
+		this.sex = null;
+	}
+	
+	public User(String name, String username, String password, String email
 			, Integer age, String education, String sex){
 		this.name = name;
-		this.userName = userName;
-		this.userPassword = userPassword;
+		this.username = username;
+		this.password = password;
 		this.email = email;
 		this.age = age;
 		this.education = education;
 		this.sex = sex;
-
     }
 	
 	public String getName() {
@@ -26,17 +35,17 @@ public class User {
         return name;
     }
 	
-	public String getUserName() {
+	public String getUsername() {
         
-        return userName;
+        return this.username;
     }
 
-	public String getUserPassword() {
-		return userPassword;
+	public String getPassword() {
+		return this.password;
 	}
 
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setUserPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -75,7 +84,7 @@ public class User {
 		this.name = name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 }

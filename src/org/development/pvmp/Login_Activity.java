@@ -17,7 +17,6 @@ public class Login_Activity extends ActionBarActivity {
 	}
 	
     public void clickRegister (View view){
-    	
     	Intent i = new Intent();
     	i.setClass(this, UserRegisterActivity.class);
     	startActivity(i);
