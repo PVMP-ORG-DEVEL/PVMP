@@ -126,7 +126,7 @@ public class User {
 	}
 	
 	public long insert () {
-
+		SQLiteDatabase sqlLite = new DatabaseHelper(context).getWritableDatabase();
 		
 		ContentValues content = new ContentValues();
 		
@@ -138,7 +138,7 @@ public class User {
 		content.put("EDUCATION", this.education);
 		content.put("SEX", this.sex);
 		
-		return 3;
+		return sqlLite.insert (TABLE_NAME, null, content);
 	}
 	
 	public int update (User user) {
