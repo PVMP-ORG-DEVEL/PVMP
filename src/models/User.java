@@ -7,7 +7,7 @@ import database.DatabaseHelper;
 import android.content.Context;
 
 public class User {
-	private static final String TABLE_NAME = null;
+	private static final String TABLE_NAME = "USER";
 	private String username;
 	private String password;
 	private String name;
@@ -103,20 +103,20 @@ public class User {
 		Context context = null;
 		SQLiteDatabase sqlLite = new DatabaseHelper(context).getReadableDatabase();
 		
-		String where = "LOGIN = ?";
-		String[] columns = new String[] {username, password, name, email, age, education, sex};
+		String where = "USERNAME = ?";
+		String[] columns = new String[] {"USERNAME", "PASSWORD", "NAME", "EMAIL", "AGE", "EDUCATION", "SEX"};
 		String arguments[] = new String[] {username};
-		cursor = sqlLite.query(User.TABLE_NAME, columns, where, arguments, null, null, null);
+		cursor = sqlLite.query(TABLE_NAME, columns, where, arguments, null, null, null);
 		
 		if (cursor != null && cursor.moveToFirst()) {
 			user = new User();
-			user.setUserName(cursor.getString(cursor.getColumnIndex(username)));
-			user.setUserPassword(cursor.getString(cursor.getColumnIndex(password)));
-			user.setName(cursor.getString(cursor.getColumnIndex(name)));
-			user.setEmail(cursor.getString(cursor.getColumnIndex(email)));
-			user.setAge(cursor.getString(cursor.getColumnIndex(age)));
-			user.setEducation(cursor.getString(cursor.getColumnIndex(education)));
-			user.setSex(cursor.getString(cursor.getColumnIndex(sex)));
+			user.setUserName(cursor.getString(cursor.getColumnIndex("USERNAME")));
+			user.setUserPassword(cursor.getString(cursor.getColumnIndex("PASSWORD")));
+			user.setName(cursor.getString(cursor.getColumnIndex("NAME")));
+			user.setEmail(cursor.getString(cursor.getColumnIndex("EMAIL")));
+			user.setAge(cursor.getString(cursor.getColumnIndex("AGE")));
+			user.setEducation(cursor.getString(cursor.getColumnIndex("EDUCATION")));
+			user.setSex(cursor.getString(cursor.getColumnIndex("SEX")));
 		}
 		
 		if (cursor != null)
@@ -126,19 +126,19 @@ public class User {
 	}
 	
 	public long insert () {
-		SQLiteDatabase sqlLite = new DatabaseHelper(context).getWritableDatabase();
+
 		
 		ContentValues content = new ContentValues();
 		
-		content.put(username, this.username);
-		content.put(password, this.password);
-		content.put(name, this.name);
-		content.put(email, this.email);
-		content.put(age, this.age);
-		content.put(education, this.education);
-		content.put(sex, this.sex);
+		content.put("USERNAME", this.username);
+		content.put("PASSWORD", this.password);
+		content.put("NAME", this.name);
+		content.put("EMAIL", this.email);
+		content.put("AGE", this.age);
+		content.put("EDUCATION", this.education);
+		content.put("SEX", this.sex);
 		
-		return sqlLite.insert (User.TABLE_NAME, null, content);
+		return 3;
 	}
 	
 	public int update (User user) {

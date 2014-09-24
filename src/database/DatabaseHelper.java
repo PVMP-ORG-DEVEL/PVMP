@@ -28,7 +28,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		db.execSQL(SCRIPT_TABLE_CREATE);
-		
 	}
 
 	@Override

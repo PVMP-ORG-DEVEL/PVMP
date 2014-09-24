@@ -32,10 +32,15 @@ public class UserRegisterActivity extends Activity {
 	}
 	
 	public void clickRegister (View view) {
+		setUserData();
+		
+		Intent i = new Intent();
+		i.setClass(this, AccountSettingsActivity.class);
+		startActivity(i);
+	}
+	
+	public void setUserData() {
 		User user1 = new User();
-		String userName = null;
-		String password = null;
-		String email = null;
 		String education = null;
 		String sex = null;
 		
@@ -67,9 +72,5 @@ public class UserRegisterActivity extends Activity {
 		user1.setSex(sex);
 		
 		user1.insert();
-		
-		Intent i = new Intent();
-		i.setClass(this, AccountSettingsActivity.class);
-		startActivity(i);
 	}
 }
