@@ -33,12 +33,15 @@ public class UserRegisterActivity extends Activity {
 	
 	public void clickRegister (View view) {
 		User user1 = new User();
+		String userName = null;
+		String password = null;
+		String email = null;
 		String education = null;
 		String sex = null;
 		
 		user1.setName(this.editText_trueName.getText().toString());
 		user1.setEmail(this.editText_userEmail.getText().toString());
-		user1.setAge(Integer.parseInt(this.editText_userAge.getText().toString()));
+		user1.setAge(this.editText_userAge.getText().toString());
 		
 		switch (radioGroup_education.getCheckedRadioButtonId()) {
 			case R.id.radio_elementarySchool:
@@ -62,6 +65,8 @@ public class UserRegisterActivity extends Activity {
 				break;
 		}
 		user1.setSex(sex);
+		
+		user1.insert();
 		
 		Intent i = new Intent();
 		i.setClass(this, AccountSettingsActivity.class);

@@ -1,13 +1,21 @@
 package models;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import database.DatabaseHelper;
+import android.content.Context;
+
 public class User {
-	private String name;
+	private static final String TABLE_NAME = null;
 	private String username;
 	private String password;
+	private String name;
 	private String email;
-	private Integer age;
+	private String age;
 	private String education;
 	private String sex;
+	private Context context;
 	
 	public User () {
 		this.name = null;
@@ -20,7 +28,7 @@ public class User {
 	}
 	
 	public User(String name, String username, String password, String email
-			, Integer age, String education, String sex){
+			, String age, String education, String sex){
 		this.name = name;
 		this.username = username;
 		this.password = password;
@@ -56,11 +64,11 @@ public class User {
 		this.email = email;
 	}
 
-	public Integer getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(Integer age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 
@@ -86,5 +94,78 @@ public class User {
 
 	public void setUserName(String username) {
 		this.username = username;
+	}
+	
+	public User select (String username) throws Exception {
+		User user = null;
+		Cursor cursor = null;
+		
+		Context context = null;
+		SQLiteDatabase sqlLite = new DatabaseHelper(context).getReadableDatabase();
+		
+		String where = "LOGIN = ?";
+		String[] columns = new String[] {username, password, name, email, age, education, sex};
+		String arguments[] = new String[] {username};
+		cursor = sqlLite.query(User.TABLE_NAME, columns, where, arguments, null, null, null);
+		
+		if (cursor != null && cursor.moveToFirst()) {
+			user = new User();
+			user.setUserName(cursor.getString(cursor.getColumnIndex(username)));
+			user.setUserPassword(cursor.getString(cursor.getColumnIndex(password)));
+			user.setName(cursor.getString(cursor.getColumnIndex(name)));
+			user.setEmail(cursor.getString(cursor.getColumnIndex(email)));
+			user.setAge(cursor.getString(cursor.getColumnIndex(age)));
+			user.setEducation(cursor.getString(cursor.getColumnIndex(education)));
+			user.setSex(cursor.getString(cursor.getColumnIndex(sex)));
+		}
+		
+		if (cursor != null)
+			cursor.close();
+				
+		return user;
+	}
+	
+	public long insert () {
+		SQLiteDatabase sqlLite = new DatabaseHelper(context).getWritableDatabase();
+		
+		ContentValues content = new ContentValues();
+		
+		content.put(username, this.username);
+		content.put(password, this.password);
+		content.put(name, this.name);
+		content.put(email, this.email);
+		content.put(age, this.age);
+		content.put(education, this.education);
+		content.put(sex, this.sex);
+		
+		return sqlLite.insert (User.TABLE_NAME, null, content);
+	}
+	
+	public int update (User user) {
+		SQLiteDatabase sqlLite = new DatabaseHelper(context).getWritableDatabase();
+		
+		ContentValues content = new ContentValues();
+		
+		content.put(username, user.getUsername());
+		content.put(password, user.getPassword());
+		content.put(name, user.getName());
+		content.put(email, user.getEmail());
+		content.put(age, user.getAge());
+		content.put(education, user.getEducation());
+		content.put(sex, user.getSex());
+		
+		String where = "LOGIN = ?";
+		String[] arguments = {user.getUsername()};
+		
+		return sqlLite.update(User.TABLE_NAME, content, where, arguments);
+	}
+	
+	public int delete (String username) {
+		SQLiteDatabase sqlLite = new DatabaseHelper(context).getWritableDatabase();
+		
+		String where = "LOGIN = ?";
+		String[] arguments = new String[] {username};
+		
+		return sqlLite.delete(User.TABLE_NAME, where, arguments);
 	}
 }
