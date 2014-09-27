@@ -110,7 +110,7 @@ public class UserDAO {
 					String education = cursor.getString(indexEducation);
 					String sex = cursor.getString(indexSex);
 					
-					User user = new User(userName, password, name, email, age, education, sex);
+					User user = new User(name, userName, password, email, age, education, sex);
 					
 					users.add(user);
 					
