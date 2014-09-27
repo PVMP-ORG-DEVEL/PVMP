@@ -28,6 +28,9 @@
         <activity
             android:name=".AccountSettingsActivity">
         </activity>
+        <activity
+            android:name=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -37,7 +37,7 @@ public class UserRegisterActivity extends Activity {
 		setUserData();
 		
 		Intent i = new Intent();
-		i.setClass(this, AccountSettingsActivity.class);
+		i.setClass(this, MainActivity.class);
 		startActivity(i);
 	}
 	

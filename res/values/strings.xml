@@ -24,5 +24,13 @@
     <string name="text_edit">Editar</string>
     <string name="text_exclude">Excluir</string>
     <string name="text_nothing"></string>
+    
+     <string-array name="navigationOptions_main">
+        <item>Proposições</item>
+        <item>Partidos</item>
+        <item>Feedback</item>
+        <item>Configurações de Conta</item>
+        <item>Sair</item>
+    </string-array>
 
 </resources>

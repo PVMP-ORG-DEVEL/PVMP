@@ -1,0 +1,90 @@
+package org.development.pvmp;
+
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.FrameLayout;
+import android.widget.ListView;
+
+
+public class MainActivity extends ActionBarActivity implements OnItemClickListener {
+	
+	private DrawerLayout drawerLayout;
+	private ListView listView;
+	private FragmentManager fragmentManager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_activity);
+        
+        this.drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout_main);
+        this.listView = (ListView)findViewById(R.id.drawerList_main);
+        this.fragmentManager = getSupportFragmentManager();
+        
+        this.listView.setOnItemClickListener(this);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,	long id) {
+		String[] menuOptions = getResources().getStringArray(R.array.navigationOptions_main);
+		
+		this.changeTitle(menuOptions[position]);
+		
+		this.changeFragment(position);
+		
+		this.drawerLayout.closeDrawers();
+	}
+	
+	private void changeTitle (String title) {
+		getSupportActionBar().setTitle(title);
+	}
+	
+	private void changeFragment(int position) {
+		android.support.v4.app.FragmentTransaction fragmentTransaction;
+		fragmentTransaction = this.fragmentManager.beginTransaction();
+		Fragment newFragment;
+		
+		switch(position) {
+			case 0:
+				newFragment = new HomeFragment();
+				break;
+			case 1:
+				newFragment = new CalculadoraFragment();
+				break;
+			default:
+				newFragment = new HomeFragment();
+		}
+		
+		fragmentTransaction.replace(R.id.content_frame, newFragment);
+		fragmentTransaction.addToBackStack(null);
+		fragmentTransaction.commit();
+	}
+}
