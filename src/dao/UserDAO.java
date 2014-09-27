@@ -29,20 +29,20 @@ public class UserDAO {
 			+ COLUMN_NAME + " VARCHAR(50) NOT NULL,"
 			+ COLUMN_EMAIL + " VARCHAR(40) NOT NULL,"
 			+ COLUMN_AGE + " INTEGER NOT NULL,"
-			+ COLUMN_EDUCATION + " VARCHAR(11) NOT NULL"
-			+ COLUMN_SEX + " VARCHAR(9) NOT NULL"
+			+ COLUMN_EDUCATION + " VARCHAR(11) NOT NULL,"
+			+ COLUMN_SEX + " VARCHAR(9) NOT NULL,"
 			+ ");";
 	
 	public static final String SCRIPT_TABLE_DELETION = 
 			"DROP TABLE IF EXISTS " + TABLE_NAME;
 	
-	private SQLiteDatabase database = null;
+	private static SQLiteDatabase database = null;
 	
-	private static UserDAO instance;
+	private static UserDAO instance = null;
 	
 	public static UserDAO getInstance(Context context) {
 		if(instance == null)
-			instance = new UserDAO(context);
+			instance = new UserDAO(context.getApplicationContext());
 		return instance;
 	}
 	
@@ -57,7 +57,7 @@ public class UserDAO {
 	}
 	
 	public List<User> recoverAll() {
-		String queryReturnAll = "SELECT FROM " + TABLE_NAME;
+		String queryReturnAll = "SELECT * FROM " + TABLE_NAME;
 		Cursor cursor = database.rawQuery(queryReturnAll, null);
 		List<User> users = buildUserByCursor(cursor);
 		
@@ -67,8 +67,7 @@ public class UserDAO {
 	public void delete(User user) {
 		String[] valuesToReplace = {
 				String.valueOf(user.getUserName())
-		};
-		
+		};		
 		database.delete(TABLE_NAME, COLUMN_USERNAME + " = ?", valuesToReplace);
 	}
 	

@@ -1,5 +1,6 @@
 package org.development.pvmp;
 
+import dao.UserDAO;
 import models.User;
 import android.app.Activity;
 import android.content.Intent;
@@ -70,6 +71,11 @@ public class UserRegisterActivity extends Activity {
 				break;
 		}
 		user1.setSex(sex);
+		UserDAO userDao = UserDAO.getInstance(getApplicationContext());
+		//as linhas abaixos vao ser mudadas, só foram definidas assim pq os campos n cabem na tela
+		user1.setUserName("UEHU	EMe");
+		user1.setPassword("pas13swod");
+		userDao.save(user1);
 		// set username
 		// set userPassword
 	}
