@@ -5,6 +5,7 @@ import models.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -73,9 +74,11 @@ public class UserRegisterActivity extends Activity {
 		user1.setSex(sex);
 		UserDAO userDao = UserDAO.getInstance(getApplicationContext());
 		//as linhas abaixos vao ser mudadas, só foram definidas assim pq os campos n cabem na tela
-		user1.setUserName("UEHU	EMe");
+		user1.setUserName("hah3Mhhuhue");
 		user1.setPassword("pas13swod");
+		Log.e("PVMP", "Antes de dar o save");
 		userDao.save(user1);
+		Log.e("PVMP", "Depois de dar o save");
 		// set username
 		// set userPassword
 	}

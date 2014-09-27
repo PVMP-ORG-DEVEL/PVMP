@@ -8,6 +8,7 @@ import models.User;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 public class AccountSettingsActivity extends Activity {
@@ -35,7 +36,9 @@ public class AccountSettingsActivity extends Activity {
 	
 	public void receiveData () {
 		UserDAO userDAO = UserDAO.getInstance(getApplicationContext());
+		Log.e("PVMP", "Antes de dar o recover");
 		users = userDAO.recoverAll();
+		Log.e("PVMP", "Depois de dar o recover");
 		
 		textView_showName.setText(users.get(0).getName());
 		textView_showEmail.setText(users.get(0).getEmail());

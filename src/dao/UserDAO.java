@@ -30,7 +30,7 @@ public class UserDAO {
 			+ COLUMN_EMAIL + " VARCHAR(40) NOT NULL,"
 			+ COLUMN_AGE + " INTEGER NOT NULL,"
 			+ COLUMN_EDUCATION + " VARCHAR(11) NOT NULL,"
-			+ COLUMN_SEX + " VARCHAR(9) NOT NULL,"
+			+ COLUMN_SEX + " VARCHAR(9) NOT NULL"
 			+ ");";
 	
 	public static final String SCRIPT_TABLE_DELETION = 
