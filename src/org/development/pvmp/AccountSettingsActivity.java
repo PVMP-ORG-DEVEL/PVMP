@@ -36,10 +36,9 @@ public class AccountSettingsActivity extends Activity {
 	
 	public void receiveData () {
 		UserDAO userDAO = UserDAO.getInstance(getApplicationContext());
-		Log.e("PVMP", "Antes de dar o recover");
 		users = userDAO.recoverAll();
-		Log.e("PVMP", "Depois de dar o recover");
 		
+		//vai ser mudado
 		textView_showName.setText(users.get(0).getName());
 		textView_showEmail.setText(users.get(0).getEmail());
 		textView_showAge.setText(Integer.toString((users.get(0).getAge())));

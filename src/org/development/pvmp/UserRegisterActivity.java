@@ -73,13 +73,14 @@ public class UserRegisterActivity extends Activity {
 		}
 		user1.setSex(sex);
 		UserDAO userDao = UserDAO.getInstance(getApplicationContext());
-		//as linhas abaixos vao ser mudadas, só foram definidas assim pq os campos n cabem na tela
-		user1.setUserName("hah3Mhhuhue");
-		user1.setPassword("pas13swod");
-		Log.e("PVMP", "Antes de dar o save");
+		/*
+		 * as linhas abaixos vao ser mudadas, só foram definidas assim pq
+		 *  os campos n cabem na tela. cuidado qnd forem testar o banco mais
+		 *  de uma vez, pq o userName tá definido como primary key. Então,
+		 *  se forem testar um outro cadastro, mudem o username aí de baixo.
+		 */
+		user1.setUserName("usernameQualquer");
+		user1.setPassword("passwordQualquer");
 		userDao.save(user1);
-		Log.e("PVMP", "Depois de dar o save");
-		// set username
-		// set userPassword
 	}
 }
