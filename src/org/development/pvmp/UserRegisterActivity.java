@@ -15,8 +15,8 @@ public class UserRegisterActivity extends Activity {
 	private EditText editText_userAge;
 	private RadioGroup radioGroup_education;
 	private RadioGroup radioGroup_sex;
-	private EditText editText_userName;
-	private EditText editText_userPassword;
+	//private EditText editText_userName;
+	//private EditText editText_userPassword;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,8 +27,8 @@ public class UserRegisterActivity extends Activity {
 		this.editText_userAge = (EditText) findViewById(R.id.editText_userAge);
 		this.radioGroup_education = (RadioGroup) findViewById(R.id.radioGroup_education);
 		this.radioGroup_sex = (RadioGroup) findViewById(R.id.radioGroup_sex);
-		this.editText_userName = (EditText) findViewById(R.id.editText_userName);
-		this.editText_userPassword = (EditText) findViewById(R.id.editText_userPassword);
+		//this.editText_userName = (EditText) findViewById(R.id.editText_userName);
+		//this.editText_userPassword = (EditText) findViewById(R.id.editText_userPassword);
 	}
 	
 	public void clickRegister (View view) {
@@ -46,7 +46,7 @@ public class UserRegisterActivity extends Activity {
 		
 		user1.setName(this.editText_trueName.getText().toString());
 		user1.setEmail(this.editText_userEmail.getText().toString());
-		user1.setAge(this.editText_userAge.getText().toString());
+		user1.setAge(Integer.parseInt(this.editText_userAge.getText().toString()));
 		
 		switch (radioGroup_education.getCheckedRadioButtonId()) {
 			case R.id.radio_elementarySchool:
@@ -70,7 +70,7 @@ public class UserRegisterActivity extends Activity {
 				break;
 		}
 		user1.setSex(sex);
-		
-		user1.insert();
+		// set username
+		// set userPassword
 	}
 }
