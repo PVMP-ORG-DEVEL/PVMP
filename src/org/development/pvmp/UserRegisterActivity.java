@@ -18,6 +18,7 @@ public class UserRegisterActivity extends Activity {
 	private RadioGroup radioGroup_sex;
 	//private EditText editText_userName;
 	//private EditText editText_userPassword;
+	private User registeredUser = new User();
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,18 +38,18 @@ public class UserRegisterActivity extends Activity {
 		
 		Intent i = new Intent();
 		i.setClass(this, MainActivity.class);
+		i.putExtra("User", registeredUser);
 		startActivity(i);
 		this.finish();
 	}
 	
 	public void setUserData() {
-		User user1 = new User();
 		String education = null;
 		String sex = null;
 		
-		user1.setName(this.editText_trueName.getText().toString());
-		user1.setEmail(this.editText_userEmail.getText().toString());
-		user1.setAge(Integer.parseInt(this.editText_userAge.getText().toString()));
+		registeredUser.setName(this.editText_trueName.getText().toString());
+		registeredUser.setEmail(this.editText_userEmail.getText().toString());
+		registeredUser.setAge(Integer.parseInt(this.editText_userAge.getText().toString()));
 		
 		switch (radioGroup_education.getCheckedRadioButtonId()) {
 			case R.id.radio_elementarySchool:
@@ -61,7 +62,7 @@ public class UserRegisterActivity extends Activity {
 				education = "Superior";
 				break;	
 		}
-		user1.setEducation(education);
+		registeredUser.setEducation(education);
 		
 		switch(radioGroup_sex.getCheckedRadioButtonId()) {
 			case R.id.radio_male:
@@ -71,16 +72,16 @@ public class UserRegisterActivity extends Activity {
 				sex = "Feminino";
 				break;
 		}
-		user1.setSex(sex);
+		registeredUser.setSex(sex);
 		UserDAO userDao = UserDAO.getInstance(getApplicationContext());
 		/*
-		 * as linhas abaixos vao ser mudadas, só foram definidas assim pq
+		 * as linhas abaixo vao ser mudadas, só foram definidas assim pq
 		 *  os campos n cabem na tela. cuidado qnd forem testar o banco mais
-		 *  de uma vez, pq o userName tá definido como primary key. Então,
+		 *  de uma vez, pq o username tá definido como primary key. Então,
 		 *  se forem testar um outro cadastro, mudem o username aí de baixo.
 		 */
-		user1.setUsername("user1Qualquer1");
-		user1.setPassword("passwordQualquer");
-		userDao.save(user1);
+		registeredUser.setUsername("registeredUserQualquer1");
+		registeredUser.setPassword("passwordQualquer");
+		userDao.save(registeredUser);
 	}
 }
