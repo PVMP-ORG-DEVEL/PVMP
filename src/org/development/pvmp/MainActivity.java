@@ -1,10 +1,12 @@
 package org.development.pvmp;
 
+import dao.UserDAO;
 import models.User;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,5 +96,16 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		fragmentTransaction.replace(R.id.frameLayout_main, newFragment);
 		fragmentTransaction.addToBackStack(null);
 		fragmentTransaction.commit();
+	}
+	
+	public void clickDelete(View view){
+		UserDAO userDao = UserDAO.getInstance(getApplicationContext());
+		
+		userDao.delete(loggedUser);
+		
+		Intent i = new Intent();
+		i.setClass(this, Login_Activity.class);
+		startActivity(i);
+		
 	}
 }

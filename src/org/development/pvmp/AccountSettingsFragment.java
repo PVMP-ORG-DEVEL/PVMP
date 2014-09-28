@@ -1,6 +1,8 @@
 package org.development.pvmp;
 
+
 import models.User;
+
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -53,4 +55,6 @@ public class AccountSettingsFragment extends Fragment {
 		textView_showUsername.setText(loggedUser.getUsername());
 		textView_showPassword.setText(loggedUser.getPassword());
 	}
+	
+
 }
