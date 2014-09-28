@@ -16,8 +16,8 @@ public class UserRegisterActivity extends Activity {
 	private EditText editText_userAge;
 	private RadioGroup radioGroup_education;
 	private RadioGroup radioGroup_sex;
-	//private EditText editText_userName;
-	//private EditText editText_userPassword;
+	private EditText editText_userName;
+	private EditText editText_userPassword;
 	private User registeredUser = new User();
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,8 @@ public class UserRegisterActivity extends Activity {
 		this.editText_userAge = (EditText) findViewById(R.id.editText_userAge);
 		this.radioGroup_education = (RadioGroup) findViewById(R.id.radioGroup_education);
 		this.radioGroup_sex = (RadioGroup) findViewById(R.id.radioGroup_sex);
-		//this.editText_userName = (EditText) findViewById(R.id.editText_userName);
-		//this.editText_userPassword = (EditText) findViewById(R.id.editText_userPassword);
+		this.editText_userName = (EditText) findViewById(R.id.editText_username_register);
+		this.editText_userPassword = (EditText) findViewById(R.id.editText_password_register);
 	}
 	
 	public void clickRegister (View view) {
@@ -80,8 +80,8 @@ public class UserRegisterActivity extends Activity {
 		 *  de uma vez, pq o username tá definido como primary key. Então,
 		 *  se forem testar um outro cadastro, mudem o username aí de baixo.
 		 */
-		registeredUser.setUsername("user1234");
-		registeredUser.setPassword("pass");
+		registeredUser.setUsername(this.editText_userName.getText().toString());
+		registeredUser.setPassword(this.editText_userPassword.getText().toString());
 		userDao.save(registeredUser);
 	}
 }

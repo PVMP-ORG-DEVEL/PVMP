@@ -32,5 +32,6 @@
         <item>Configurações de Conta</item>
         <item>Sair</item>
     </string-array>
+        <string name="textView_errorLogin">Usuario e/ou Senha incorreto(s).</string>
 
 </resources>
