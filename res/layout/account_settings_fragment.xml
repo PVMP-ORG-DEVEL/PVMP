@@ -117,17 +117,6 @@
         android:text="@string/text_edit" />
 
     <TextView
-        android:id="@+id/textView_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView_name"
-        android:layout_below="@+id/textView_showName"
-        android:layout_marginTop="15dp"
-        android:text="@string/text_email"
-        android:textSize="19sp"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/textView_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -139,22 +128,11 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView_showPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_password"
-        android:layout_alignBottom="@+id/textView_password"
-        android:layout_toRightOf="@+id/textView_username"
-        android:text="@string/text_nothing"
-        android:textSize="19sp" />
-
-    <TextView
         android:id="@+id/textView_showUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_username"
-        android:layout_alignBottom="@+id/textView_username"
-        android:layout_alignLeft="@+id/textView_showEmail"
+        android:layout_above="@+id/textView_showPassword"
+        android:layout_alignRight="@+id/textView_education"
         android:text="@string/text_nothing"
         android:textSize="19sp" />
 
@@ -162,10 +140,32 @@
         android:id="@+id/textView_showEducation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView_showSex"
+        android:layout_alignBaseline="@+id/textView_education"
+        android:layout_alignBottom="@+id/textView_education"
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/textView_education"
         android:text="@string/text_nothing"
         android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/textView_showPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_password"
+        android:layout_alignBottom="@+id/textView_password"
+        android:layout_toRightOf="@+id/textView_showSex"
+        android:text="@string/text_nothing"
+        android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/textView_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView_showName"
+        android:layout_marginTop="15dp"
+        android:text="@string/text_email"
+        android:textSize="19sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

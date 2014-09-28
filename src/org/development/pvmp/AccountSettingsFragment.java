@@ -46,7 +46,6 @@ public class AccountSettingsFragment extends Fragment {
 		MainActivity mainActivity = (MainActivity) getActivity();
 		User loggedUser = mainActivity.getLoggedUser();
 		
-		//vai ser mudado
 		textView_showName.setText(loggedUser.getName());
 		textView_showEmail.setText(loggedUser.getEmail());
 		textView_showAge.setText(Integer.toString((loggedUser.getAge())));

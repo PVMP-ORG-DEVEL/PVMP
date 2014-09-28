@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Login_Activity extends ActionBarActivity {
+public class LoginActivity extends ActionBarActivity {
 
 	private User userToBeLogged = new User();
 	private EditText editText_username;
