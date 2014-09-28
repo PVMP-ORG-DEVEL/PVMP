@@ -105,6 +105,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		
 		Intent i = new Intent();
 		i.setClass(this, Login_Activity.class);
+		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(i);
 		
 	}
