@@ -78,9 +78,14 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 	public void onItemClick(AdapterView<?> parent, View view, int position,	long id) {
 		String[] menuOptions = getResources().getStringArray(R.array.navigationOptions_main);
 		
-		this.changeTitle(menuOptions[position]);
-		this.changeFragment(position);
-		this.drawerLayout_main.closeDrawers();
+		if (position == 4) {
+			leaveActivity();
+		}
+		else {
+			this.changeTitle(menuOptions[position]);
+			this.changeFragment(position);
+			this.drawerLayout_main.closeDrawers();
+		}
 	}
 	
 	private void changeTitle (String title) {
@@ -110,10 +115,13 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		
 		userDao.delete(loggedUser);
 		
+		leaveActivity();
+	}
+	
+	public void leaveActivity () {
 		Intent i = new Intent();
 		i.setClass(this, Login_Activity.class);
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(i);
-		
 	}
 }
