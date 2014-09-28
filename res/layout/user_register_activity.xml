@@ -100,7 +100,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText_userName"
+        android:id="@+id/editText_username_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -111,12 +111,12 @@
         android:hint="@string/text_username" />
 
     <EditText
-        android:id="@+id/editText_userPassword"
+        android:id="@+id/editText_password_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText_userName"
+        android:layout_below="@+id/editText_username_register"
         android:ems="10"
         android:hint="@string/text_password"
         android:inputType="textPassword" />

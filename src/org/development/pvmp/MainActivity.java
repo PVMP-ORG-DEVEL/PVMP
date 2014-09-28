@@ -22,7 +22,17 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 	private User loggedUser;
 	
 
-    @Override
+    public User getLoggedUser() {
+		return loggedUser;
+	}
+
+
+	public void setLoggedUser(User loggedUser) {
+		this.loggedUser = loggedUser;
+	}
+
+
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);

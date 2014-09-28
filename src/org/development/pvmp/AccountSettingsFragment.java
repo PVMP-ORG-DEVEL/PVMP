@@ -1,9 +1,5 @@
 package org.development.pvmp;
 
-import java.util.List;
-
-import dao.UserDAO;
-
 import models.User;
 
 import android.os.Bundle;
@@ -20,7 +16,8 @@ public class AccountSettingsFragment extends Fragment {
 	private TextView textView_showAge;
 	private TextView textView_showEducation;
 	private TextView textView_showSex;
-	private List<User> users;
+	private TextView textView_showUsername;
+	private TextView textView_showPassword;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -35,21 +32,25 @@ public class AccountSettingsFragment extends Fragment {
 		textView_showAge = (TextView) viewAccountSettings.findViewById(R.id.textView_showAge);
 		textView_showEducation = (TextView) viewAccountSettings.findViewById(R.id.textView_showEducation);
 		textView_showSex = (TextView) viewAccountSettings.findViewById(R.id.textView_showSex);
+		textView_showUsername = (TextView) viewAccountSettings.findViewById(R.id.textView_showUsername);
+		textView_showPassword = (TextView) viewAccountSettings.findViewById(R.id.textView_showPassword);
 		
 		//receiveData();
 		
 		return viewAccountSettings;
 	}
 	
-	/*public void receiveData () {
-		UserDAO userDAO = UserDAO.getInstance(getActivity().getApplicationContext());
-		users = userDAO();
+	public void receiveData () {
+		MainActivity mainActivity = (MainActivity) getActivity();
+		User loggedUser = mainActivity.getLoggedUser();
 		
 		//vai ser mudado
-		textView_showName.setText(users.get(0).getName());
-		textView_showEmail.setText(users.get(0).getEmail());
-		textView_showAge.setText(Integer.toString((users.get(0).getAge())));
-		textView_showEducation.setText(users.get(0).getEducation());
-		textView_showSex.setText(users.get(0).getSex());
-	}*/
+		textView_showName.setText(loggedUser.getName());
+		textView_showEmail.setText(loggedUser.getEmail());
+		textView_showAge.setText(Integer.toString((loggedUser.getAge())));
+		textView_showEducation.setText(loggedUser.getEducation());
+		textView_showSex.setText(loggedUser.getSex());
+		textView_showUsername.setText(loggedUser.getUsername());
+		textView_showPassword.setText(loggedUser.getPassword());
+	}
 }

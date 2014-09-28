@@ -1,23 +1,29 @@
 package org.development.pvmp;
 
 
+import dao.UserDAO;
 import models.User;
 import android.support.v7.app.ActionBarActivity;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 public class Login_Activity extends ActionBarActivity {
 
 	private User userToBeLogged = new User();
+	private EditText editText_username;
+	//private EditText editText_password;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_activity);
+		
+		editText_username = (EditText) findViewById(R.id.editText_username);
+		//editText_password = (EditText) findViewById(R.id.editText_password);
 	}
 
 	@Override
@@ -40,9 +46,13 @@ public class Login_Activity extends ActionBarActivity {
 	}
 	
 	public void clickLogin (View view) {
+		String username = editText_username.getText().toString();
+		UserDAO userDao = UserDAO.getInstance(getApplicationContext());
+		userToBeLogged = userDao.selectByUsername(username);
 		Intent i = new Intent();
 		i.setClass(this, MainActivity.class);
-		
+		i.putExtra ("User", userToBeLogged);
+		startActivity(i);
 	}
 	
     public void clickRegister (View view) {
