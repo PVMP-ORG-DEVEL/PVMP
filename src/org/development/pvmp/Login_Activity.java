@@ -31,16 +31,12 @@ public class Login_Activity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
@@ -48,12 +44,17 @@ public class Login_Activity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	/*
+	 * This method will be the one that do the "login" action, only if the username
+	 * and the password typed exist on the DataBase.
+	 */
 	public void clickLogin (View view) {
 		String username = editText_username.getText().toString();
 		String password = editText_password.getText().toString();
 		UserDAO userDao = UserDAO.getInstance(getApplicationContext());
 		userToBeLogged = userDao.selectByUsername(username);
-		if(userToBeLogged.getUsername() != null && userToBeLogged.getPassword().equals(password)){
+		
+		if(userToBeLogged.getUsername() != null && userToBeLogged.getPassword().equals(password)) {
 			Intent i = new Intent();
 			i.setClass(this, MainActivity.class);
 			i.putExtra ("User", userToBeLogged);
@@ -61,16 +62,26 @@ public class Login_Activity extends ActionBarActivity {
 			}
 		else {
 			textView_errorLogin.setVisibility(1);
+			editText_username.setText("");
+			editText_password.setText("");
+			editText_username.setFocusableInTouchMode(true);
+			editText_username.requestFocus();
 		}
-		
 	}
 	
-    public void clickRegister (View view) {
+	/*
+	 * This one do the transition between the LoginActivity (this) and the UserRegisterActivity
+	 */
+	public void clickRegister (View view) {
     	Intent i = new Intent();
     	i.setClass(this, UserRegisterActivity.class);
     	startActivity(i);
     }
-    
+	
+	/*
+	 * clickGuest goes to the MainActivity, passing a "null" instantiated User, so it cannot have
+	 * some features of the app.
+	 */
     public void clickGuest (View view) {
     	Intent i = new Intent();
     	i.setClass(this, MainActivity.class);
