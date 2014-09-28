@@ -35,7 +35,7 @@ public class User {
         return name;
     }
 	
-	public String getUserName() {
+	public String getUsername() {
         
         return this.username;
     }
@@ -84,7 +84,7 @@ public class User {
 		this.name = name;
 	}
 
-	public void setUserName(String username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 }

@@ -1,14 +1,12 @@
 package dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import database.PersistenceHelper;
 
 import models.User;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 public class UserDAO {
@@ -56,17 +54,32 @@ public class UserDAO {
 		database.insert(TABLE_NAME, null, values);
 	}
 	
-	public List<User> recoverAll() {
-		String queryReturnAll = "SELECT * FROM " + TABLE_NAME;
-		Cursor cursor = database.rawQuery(queryReturnAll, null);
-		List<User> users = buildUserByCursor(cursor);
-		
-		return users;
+	public User selectByUsername(String username) {
+        String queryUser = "SELECT * FROM " + TABLE_NAME + " where " + COLUMN_USERNAME + " = " + username;
+        User user = recoverByQuery(queryUser);
+        
+        return user;   
+    }
+	
+	public User recoverByQuery (String query) {
+		Cursor cursor = database.rawQuery(query, null);
+ 
+        User user = new User(); 
+        
+        if (cursor != null){
+        	ContentValues contentValues = new ContentValues();
+        	DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
+        	user = contentValuesToUser(contentValues);
+        }
+        else
+        	user = null;
+
+        return user; 
 	}
 	
 	public void delete(User user) {
 		String[] valuesToReplace = {
-				String.valueOf(user.getUserName())
+				String.valueOf(user.getUsername())
 		};		
 		database.delete(TABLE_NAME, COLUMN_USERNAME + " = ?", valuesToReplace);
 	}
@@ -75,7 +88,7 @@ public class UserDAO {
 		ContentValues values = generateContentValuesUser(user);
 		
 		String[] valuesToReplace = {
-				String.valueOf(user.getUserName())
+				String.valueOf(user.getUsername())
 		};
 		
 		database.update(TABLE_NAME, values, COLUMN_USERNAME + " = ?", valuesToReplace);
@@ -86,44 +99,22 @@ public class UserDAO {
 			database.close();
 	}
 	
-	private List<User> buildUserByCursor(Cursor cursor) {
-		List<User> users = new ArrayList<User>();
-		if(cursor == null)
-			return users;
-		try {
-			if(cursor.moveToFirst()) {
-				do{
-					int indexUserName = cursor.getColumnIndex(COLUMN_USERNAME);
-					int indexPassword = cursor.getColumnIndex(COLUMN_PASSWORD);
-					int indexName = cursor.getColumnIndex(COLUMN_NAME);
-					int indexEmail = cursor.getColumnIndex(COLUMN_EMAIL);
-					int indexAge = cursor.getColumnIndex(COLUMN_AGE);
-					int indexEducation = cursor.getColumnIndex(COLUMN_EDUCATION);
-					int indexSex = cursor.getColumnIndex(COLUMN_SEX);
-					
-					String userName = cursor.getString(indexUserName);
-					String password = cursor.getString(indexPassword);
-					String name = cursor.getString(indexName);
-					String email = cursor.getString(indexEmail);
-					int age = cursor.getInt(indexAge);
-					String education = cursor.getString(indexEducation);
-					String sex = cursor.getString(indexSex);
-					
-					User user = new User(name, userName, password, email, age, education, sex);
-					
-					users.add(user);
-					
-				} while(cursor.moveToNext());
-			}
-		} finally {
-			cursor.close();
-		}
-		return users;
-	}
-	
+	 User contentValuesToUser(ContentValues contentValues) {
+        User user = new User();
+        user.setUsername(contentValues.getAsString(COLUMN_USERNAME));
+        user.setPassword(contentValues.getAsString(COLUMN_PASSWORD));
+        user.setName(contentValues.getAsString(COLUMN_NAME));
+        user.setEmail(contentValues.getAsString(COLUMN_EMAIL));
+        user.setAge(contentValues.getAsInteger(COLUMN_AGE));
+        user.setEducation(contentValues.getAsString(COLUMN_EDUCATION));
+        user.setSex(contentValues.getAsString(COLUMN_SEX));
+        
+        return user;
+    }
+		
 	private ContentValues generateContentValuesUser(User user) {
 		ContentValues values = new ContentValues();
-		values.put(COLUMN_USERNAME, user.getUserName());
+		values.put(COLUMN_USERNAME, user.getUsername());
 		values.put(COLUMN_PASSWORD, user.getPassword());
 		values.put(COLUMN_NAME, user.getName());
 		values.put(COLUMN_EMAIL, user.getEmail());

@@ -43,7 +43,7 @@ public class AccountSettingsFragment extends Fragment {
 	
 	public void receiveData () {
 		UserDAO userDAO = UserDAO.getInstance(getActivity().getApplicationContext());
-		users = userDAO.recoverAll();
+		users = userDAO();
 		
 		//vai ser mudado
 		textView_showName.setText(users.get(0).getName());

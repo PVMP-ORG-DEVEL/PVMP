@@ -71,7 +71,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		Fragment newFragment;
 		
 		switch(position) {
-			case 4:
+			case 3:
 				newFragment = new AccountSettingsFragment();
 				break;
 			default:
