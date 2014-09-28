@@ -5,7 +5,6 @@ import models.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -39,6 +38,7 @@ public class UserRegisterActivity extends Activity {
 		Intent i = new Intent();
 		i.setClass(this, MainActivity.class);
 		startActivity(i);
+		this.finish();
 	}
 	
 	public void setUserData() {
@@ -79,7 +79,7 @@ public class UserRegisterActivity extends Activity {
 		 *  de uma vez, pq o userName tá definido como primary key. Então,
 		 *  se forem testar um outro cadastro, mudem o username aí de baixo.
 		 */
-		user1.setUserName("usernameQualquer");
+		user1.setUserName("userQualquer1");
 		user1.setPassword("passwordQualquer");
 		userDao.save(user1);
 	}

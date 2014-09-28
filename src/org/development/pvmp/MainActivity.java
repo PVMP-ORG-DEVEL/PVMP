@@ -10,26 +10,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 
 
 public class MainActivity extends ActionBarActivity implements OnItemClickListener {
 	
-	private DrawerLayout drawerLayout;
-	private ListView listView;
+	private DrawerLayout drawerLayout_main;
+	private ListView drawerList_main;
 	private FragmentManager fragmentManager;
+	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         
-        this.drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout_main);
-        this.listView = (ListView)findViewById(R.id.drawerList_main);
+        this.drawerLayout_main = (DrawerLayout)findViewById(R.id.drawerLayout_main);
+        this.drawerList_main = (ListView)findViewById(R.id.drawerList_main);
         this.fragmentManager = getSupportFragmentManager();
         
-        this.listView.setOnItemClickListener(this);
+        this.drawerList_main.setOnItemClickListener(this);
     }
 
 
@@ -57,10 +57,8 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		String[] menuOptions = getResources().getStringArray(R.array.navigationOptions_main);
 		
 		this.changeTitle(menuOptions[position]);
-		
 		this.changeFragment(position);
-		
-		this.drawerLayout.closeDrawers();
+		this.drawerLayout_main.closeDrawers();
 	}
 	
 	private void changeTitle (String title) {
@@ -73,17 +71,14 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		Fragment newFragment;
 		
 		switch(position) {
-			case 0:
-				newFragment = new HomeFragment();
-				break;
-			case 1:
-				newFragment = new CalculadoraFragment();
+			case 4:
+				newFragment = new AccountSettingsFragment();
 				break;
 			default:
-				newFragment = new HomeFragment();
+				newFragment = new AccountSettingsFragment();
 		}
 		
-		fragmentTransaction.replace(R.id.content_frame, newFragment);
+		fragmentTransaction.replace(R.id.frameLayout_main, newFragment);
 		fragmentTransaction.addToBackStack(null);
 		fragmentTransaction.commit();
 	}
