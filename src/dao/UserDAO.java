@@ -55,7 +55,7 @@ public class UserDAO {
 	}
 	
 	public User selectByUsername(String username) {
-        String queryUser = "SELECT * FROM " + TABLE_NAME + " where " + COLUMN_USERNAME + " = " + username;
+        String queryUser = "SELECT * FROM " + TABLE_NAME + " where " + COLUMN_USERNAME + " = '" + username + "'";
         User user = recoverByQuery(queryUser);
         
         return user;   
@@ -64,9 +64,9 @@ public class UserDAO {
 	public User recoverByQuery (String query) {
 		Cursor cursor = database.rawQuery(query, null);
  
-        User user = new User(); 
+        User user = new User();
         
-        if (cursor != null){
+        if (cursor.moveToFirst()){
         	ContentValues contentValues = new ContentValues();
         	DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
         	user = contentValuesToUser(contentValues);

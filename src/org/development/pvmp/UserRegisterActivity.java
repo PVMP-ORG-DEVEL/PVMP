@@ -80,7 +80,7 @@ public class UserRegisterActivity extends Activity {
 		 *  de uma vez, pq o username tá definido como primary key. Então,
 		 *  se forem testar um outro cadastro, mudem o username aí de baixo.
 		 */
-		registeredUser.setUsername("user123");
+		registeredUser.setUsername("user1234");
 		registeredUser.setPassword("pass");
 		userDao.save(registeredUser);
 	}

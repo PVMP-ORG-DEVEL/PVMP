@@ -35,7 +35,7 @@ public class AccountSettingsFragment extends Fragment {
 		textView_showUsername = (TextView) viewAccountSettings.findViewById(R.id.textView_showUsername);
 		textView_showPassword = (TextView) viewAccountSettings.findViewById(R.id.textView_showPassword);
 		
-		//receiveData();
+		receiveData();
 		
 		return viewAccountSettings;
 	}
