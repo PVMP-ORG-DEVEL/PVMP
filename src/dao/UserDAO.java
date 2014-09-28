@@ -1,3 +1,10 @@
+/*
+ * This class is responsible for manage all operations related to the database.
+ * Here is defined the methods of insertion, query, delete, and update 
+ * data in the database
+ */
+
+
 package dao;
 
 import database.PersistenceHelper;

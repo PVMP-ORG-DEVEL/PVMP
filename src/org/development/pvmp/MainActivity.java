@@ -1,3 +1,10 @@
+/*
+ * This class is responsible for managing the Activity Main.
+ * this activity is where will be the main screen of the app, where it had propositions 
+ * and will have a side menu where the user can view their account settings, 
+ * logout.
+ */
+
 package org.development.pvmp;
 
 import dao.UserDAO;

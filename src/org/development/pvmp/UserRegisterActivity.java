@@ -1,3 +1,11 @@
+/*
+  *This class is responsible for managing the Activity UserRegister. 
+  * This activity is the screen where the user will hold its registration on the app, 
+  * Providing your data and when clicked the "Register" button, this data is 
+  * Saved in the bank and he is directed to the main screen.
+ */
+
+
 package org.development.pvmp;
 
 import dao.UserDAO;
