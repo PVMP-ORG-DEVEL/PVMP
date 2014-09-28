@@ -1,6 +1,7 @@
 package org.development.pvmp;
 
 
+import models.User;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +16,6 @@ public class Login_Activity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_activity);
 	}
-	
-    public void clickRegister (View view){
-    	Intent i = new Intent();
-    	i.setClass(this, UserRegisterActivity.class);
-    	startActivity(i);
-    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -40,4 +35,18 @@ public class Login_Activity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+    public void clickRegister (View view) {
+    	Intent i = new Intent();
+    	i.setClass(this, UserRegisterActivity.class);
+    	startActivity(i);
+    }
+    
+    public void clickGuest (View view) {
+    	User guest = new User();
+    	Intent i = new Intent();
+    	i.setClass(this, MainActivity.class);
+    	i.putExtra("User", guest);
+    	startActivity(i);
+    }
 }

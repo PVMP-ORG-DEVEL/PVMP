@@ -1,5 +1,6 @@
 package org.development.pvmp;
 
+import models.User;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 	private DrawerLayout drawerLayout_main;
 	private ListView drawerList_main;
 	private FragmentManager fragmentManager;
+	private User loggedUser;
 	
 
     @Override
@@ -28,6 +30,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
         this.drawerLayout_main = (DrawerLayout)findViewById(R.id.drawerLayout_main);
         this.drawerList_main = (ListView)findViewById(R.id.drawerList_main);
         this.fragmentManager = getSupportFragmentManager();
+        this.loggedUser = (User) getIntent().getSerializableExtra("User");
         
         this.drawerList_main.setOnItemClickListener(this);
     }

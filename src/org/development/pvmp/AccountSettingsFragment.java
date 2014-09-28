@@ -36,12 +36,12 @@ public class AccountSettingsFragment extends Fragment {
 		textView_showEducation = (TextView) viewAccountSettings.findViewById(R.id.textView_showEducation);
 		textView_showSex = (TextView) viewAccountSettings.findViewById(R.id.textView_showSex);
 		
-		receiveData();
+		//receiveData();
 		
 		return viewAccountSettings;
 	}
 	
-	public void receiveData () {
+	/*public void receiveData () {
 		UserDAO userDAO = UserDAO.getInstance(getActivity().getApplicationContext());
 		users = userDAO();
 		
@@ -51,5 +51,5 @@ public class AccountSettingsFragment extends Fragment {
 		textView_showAge.setText(Integer.toString((users.get(0).getAge())));
 		textView_showEducation.setText(users.get(0).getEducation());
 		textView_showSex.setText(users.get(0).getSex());
-	}
+	}*/
 }

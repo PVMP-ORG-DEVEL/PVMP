@@ -71,9 +71,7 @@ public class UserDAO {
         	DatabaseUtils.cursorRowToContentValues(cursor, contentValues);
         	user = contentValuesToUser(contentValues);
         }
-        else
-        	user = null;
-
+        
         return user; 
 	}
 	
