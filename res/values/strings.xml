@@ -27,6 +27,7 @@
     <string name="text_old_password">Senha Atual</string>
     <string name="text_new_password">Nova Senha</string>
     <string name="text_save">Salvar</string>
+    <string name="textView_errorLogin">Usuario e/ou Senha incorreto(s).</string>
     
      <string-array name="navigationOptions_main">
         <item>Proposições</item>
@@ -35,6 +36,14 @@
         <item>Configurações de Conta</item>
         <item>Sair</item>
     </string-array>
-        <string name="textView_errorLogin">Usuario e/ou Senha incorreto(s).</string>
+    
+     <array name="navigationOptions_icons">
+         <item>@drawable/ic_proposition</item>
+         <item>@drawable/ic_partido</item>
+         <item>@drawable/ic_feedback</item>
+         <item>@drawable/ic_settings</item>
+         <item>@drawable/ic_logout</item>
+     </array>
+        
 
 </resources>
