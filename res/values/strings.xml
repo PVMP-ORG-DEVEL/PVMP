@@ -24,6 +24,9 @@
     <string name="text_edit">Editar</string>
     <string name="text_exclude">Excluir</string>
     <string name="text_nothing"></string>
+    <string name="text_old_password">Senha Atual</string>
+    <string name="text_new_password">Nova Senha</string>
+    <string name="text_save">Salvar</string>
     
      <string-array name="navigationOptions_main">
         <item>Proposições</item>
