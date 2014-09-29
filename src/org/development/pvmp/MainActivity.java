@@ -94,6 +94,8 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		Fragment newFragment;
 		
 		switch(position) {
+			case 2:
+				newFragment = new EditSettingsFragment();
 			case 3:
 				newFragment = new AccountSettingsFragment();
 				break;
@@ -112,6 +114,14 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		userDao.delete(loggedUser);
 		
 		leaveActivity();
+	}
+	
+	public void clickEdit(View view) {
+		setContentView(R.layout.edit_settings_fragment);
+	}
+	
+	public void clickSave() {
+		
 	}
 	
 	public void leaveActivity () {
