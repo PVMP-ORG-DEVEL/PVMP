@@ -94,8 +94,6 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		Fragment newFragment;
 		
 		switch(position) {
-			case 2:
-				newFragment = new EditSettingsFragment();
 			case 3:
 				newFragment = new AccountSettingsFragment();
 				break;
@@ -117,11 +115,21 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 	}
 	
 	public void clickEdit(View view) {
-		setContentView(R.layout.edit_settings_fragment);
+		//setContentView(R.layout.edit_settings_fragment);
+		android.support.v4.app.FragmentTransaction fragmentTransaction;
+		fragmentTransaction = this.fragmentManager.beginTransaction();
+		Fragment newFragment;
+		
+		newFragment = new EditSettingsFragment();
+
+		fragmentTransaction.replace(R.id.frameLayout_main, newFragment);
+		fragmentTransaction.addToBackStack(null);
+		fragmentTransaction.commit();
 	}
 	
 	public void clickSave() {
-		
+		UserDAO userDao = UserDAO.getInstance(getApplicationContext());		
+		userDao.edit(loggedUser);
 	}
 	
 	public void leaveActivity () {

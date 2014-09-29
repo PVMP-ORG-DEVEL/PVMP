@@ -1,7 +1,9 @@
 package org.development.pvmp;
 
+import models.User;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ public class EditSettingsFragment extends Fragment{
 	private RadioGroup radioButton_editEducation;
 	private EditText editText_oldPassword;
 	private EditText editText_newPassword;
+	private FragmentManager fragmentManager;
 	
 	public View onCreateView(LayoutInflater inflater,
 							 ViewGroup container,
@@ -30,7 +33,8 @@ public class EditSettingsFragment extends Fragment{
 		// radioButton_editEducation = (RadioGroup) viewEditSettings.findViewById(R.id.editText_editName);
 		editText_oldPassword = (EditText) viewEditSettings.findViewById(R.id.editText_oldPassword);
 		editText_newPassword = (EditText) viewEditSettings.findViewById(R.id.editText_newPassword);
-		
+				
 		return viewEditSettings;		
 	}
+	
 }
