@@ -1,14 +1,18 @@
 package org.development.pvmp;
 
+import dao.UserDAO;
 import models.User;
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.view.View.OnClickListener;
 
 public class EditSettingsFragment extends Fragment{
 
@@ -19,6 +23,8 @@ public class EditSettingsFragment extends Fragment{
 	private EditText editText_oldPassword;
 	private EditText editText_newPassword;
 	private FragmentManager fragmentManager;
+	private Button button_save;
+	private MainActivity mainActivity;
 	
 	public View onCreateView(LayoutInflater inflater,
 							 ViewGroup container,
@@ -37,4 +43,11 @@ public class EditSettingsFragment extends Fragment{
 		return viewEditSettings;		
 	}
 	
+	public void clickSave () {
+		button_save.setOnClickListener(new OnClickListener () {
+			public void onClick(View v) {
+				mainActivity.changeFragment(3);
+			}
+		});
+	}	
 }
