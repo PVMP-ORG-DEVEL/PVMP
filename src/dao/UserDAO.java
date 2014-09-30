@@ -68,6 +68,13 @@ public class UserDAO {
         return user;   
     }
 	
+	public User selectByEmail(String email) {
+        String queryUser = "SELECT * FROM " + TABLE_NAME + " where " + COLUMN_EMAIL + " = '" + email + "'";
+        User user = recoverByQuery(queryUser);
+        
+        return user;   
+    }
+	
 	public User recoverByQuery (String query) {
 		Cursor cursor = database.rawQuery(query, null);
  
