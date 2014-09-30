@@ -62,21 +62,21 @@ public class UserDAO {
 	}
 	
 	public User selectByUsername(String username) {
-        String queryUser = "SELECT * FROM " + TABLE_NAME + " where " + COLUMN_USERNAME + " = '" + username + "'";
-        User user = recoverByQuery(queryUser);
+        String queryUser = "SELECT * FROM " + TABLE_NAME + " where " + COLUMN_USERNAME + " = ?";
+        User user = recoverByQuery(queryUser, username);
         
         return user;   
     }
 	
 	public User selectByEmail(String email) {
-        String queryUser = "SELECT * FROM " + TABLE_NAME + " where " + COLUMN_EMAIL + " = '" + email + "'";
-        User user = recoverByQuery(queryUser);
+        String queryUser = "SELECT * FROM " + TABLE_NAME + " where " + COLUMN_EMAIL + " = ?";
+        User user = recoverByQuery(queryUser, email);
         
         return user;   
     }
 	
-	public User recoverByQuery (String query) {
-		Cursor cursor = database.rawQuery(query, null);
+	public User recoverByQuery (String query, String valor) {
+		Cursor cursor = database.rawQuery(query, new String [] {valor});
  
         User user = new User();
         
