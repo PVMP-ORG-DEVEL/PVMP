@@ -114,7 +114,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_delete"
         android:layout_alignParentLeft="true"
-        android:onClick="clickEdit"
         android:text="@string/text_edit" />
 
     <TextView

@@ -88,7 +88,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		getSupportActionBar().setTitle(title);
 	}
 	
-	private void changeFragment(int position) {
+	public void changeFragment(int position) {
 		android.support.v4.app.FragmentTransaction fragmentTransaction;
 		fragmentTransaction = this.fragmentManager.beginTransaction();
 		Fragment newFragment;
@@ -96,6 +96,9 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		switch(position) {
 			case 3:
 				newFragment = new AccountSettingsFragment();
+				break;
+			case 5:
+				newFragment = new EditSettingsFragment();
 				break;
 			default:
 				newFragment = new AccountSettingsFragment();
@@ -114,25 +117,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		leaveActivity();
 	}
 	
-	public void clickEdit(View view) {
-		//setContentView(R.layout.edit_settings_fragment);
-		android.support.v4.app.FragmentTransaction fragmentTransaction;
-		fragmentTransaction = this.fragmentManager.beginTransaction();
-		Fragment newFragment;
-		
-		newFragment = new EditSettingsFragment();
-
-		fragmentTransaction.replace(R.id.frameLayout_main, newFragment);
-		fragmentTransaction.addToBackStack(null);
-		fragmentTransaction.commit();
-	}
-	
-	public void clickSave() {
-		UserDAO userDao = UserDAO.getInstance(getApplicationContext());		
-		userDao.edit(loggedUser);
-	}
-	
-	public void leaveActivity () {
+	private void leaveActivity () {
 		Intent i = new Intent();
 		i.setClass(this, LoginActivity.class);
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

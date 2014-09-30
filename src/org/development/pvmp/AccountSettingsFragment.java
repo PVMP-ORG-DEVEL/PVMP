@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class AccountSettingsFragment extends Fragment {
@@ -18,6 +20,9 @@ public class AccountSettingsFragment extends Fragment {
 	private TextView textView_showSex;
 	private TextView textView_showUsername;
 	private TextView textView_showPassword;
+	private Button button_edit;
+	private MainActivity mainActivity;
+	private User loggedUser;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -27,6 +32,9 @@ public class AccountSettingsFragment extends Fragment {
 		
 		View viewAccountSettings = inflater.inflate(R.layout.account_settings_fragment, container, false);
 		
+		mainActivity = (MainActivity) getActivity();
+		loggedUser = mainActivity.getLoggedUser();
+		
 		textView_showName = (TextView) viewAccountSettings.findViewById(R.id.textView_showName);
 		textView_showEmail = (TextView) viewAccountSettings.findViewById(R.id.textView_showEmail);
 		textView_showAge = (TextView) viewAccountSettings.findViewById(R.id.textView_showAge);
@@ -34,16 +42,15 @@ public class AccountSettingsFragment extends Fragment {
 		textView_showSex = (TextView) viewAccountSettings.findViewById(R.id.textView_showSex);
 		textView_showUsername = (TextView) viewAccountSettings.findViewById(R.id.textView_showUsername);
 		textView_showPassword = (TextView) viewAccountSettings.findViewById(R.id.textView_showPassword);
-		
-		receiveData();
+		button_edit = (Button) viewAccountSettings.findViewById(R.id.button_edit);
+	
+		setScreenData();
+		clickEdit();
 		
 		return viewAccountSettings;
 	}
 	
-	public void receiveData () {
-		MainActivity mainActivity = (MainActivity) getActivity();
-		User loggedUser = mainActivity.getLoggedUser();
-		
+	public void setScreenData () {
 		textView_showName.setText(loggedUser.getName());
 		textView_showEmail.setText(loggedUser.getEmail());
 		textView_showAge.setText(Integer.toString((loggedUser.getAge())));
@@ -51,6 +58,15 @@ public class AccountSettingsFragment extends Fragment {
 		textView_showSex.setText(loggedUser.getSex());
 		textView_showUsername.setText(loggedUser.getUsername());
 		textView_showPassword.setText(loggedUser.getPassword());
+	}
+	
+	public void clickEdit () {
+		button_edit.setOnClickListener(new OnClickListener () {
+			@Override
+			public void onClick(View v) {
+				mainActivity.changeFragment(5);
+			}
+		});
 	}
 }
 
