@@ -107,4 +107,15 @@ public class User implements Serializable {
 		else
 			return null;
 	}
+	
+	public Boolean validateExistingUser (String username, Context context){
+		User user = new User();
+		userDao = UserDAO.getInstance(context);
+		user = userDao.selectByUsername(username);
+		
+		if (user.getUsername() == null){
+			return true;
+		}
+		else return false;
+	}
 }

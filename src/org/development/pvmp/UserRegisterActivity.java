@@ -11,11 +11,14 @@ package org.development.pvmp;
 import dao.UserDAO;
 import models.User;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class UserRegisterActivity extends Activity {
 	
@@ -46,13 +49,29 @@ public class UserRegisterActivity extends Activity {
 	}
 	
 	public void clickRegister (View view) {
-		setUserData();
 		
-		Intent i = new Intent();
-		i.setClass(this, MainActivity.class);
-		i.putExtra("User", registeredUser);
-		startActivity(i);
-		this.finish();
+		registeredUser.setUsername(this.editText_userName.getText().toString());
+		if(registeredUser.validateExistingUser(registeredUser.getUsername(), getApplicationContext())){
+			setUserData();
+		
+			Intent i = new Intent();
+			i.setClass(this, MainActivity.class);
+			i.putExtra("User", registeredUser);
+			startActivity(i);
+			this.finish();}
+		else{
+			Context context = getApplicationContext();
+			CharSequence text = "Nome de usuário já cadastrado.";
+			int duration = Toast.LENGTH_LONG;
+
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			toast.show();
+			editText_userName.setText("");
+			editText_userPassword.setText("");
+			editText_userName.setFocusableInTouchMode(true);
+			editText_userName.requestFocus();
+		}
 	}
 	
 	public void setUserData() {
