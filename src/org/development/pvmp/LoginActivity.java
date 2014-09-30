@@ -1,7 +1,6 @@
 package org.development.pvmp;
 
 
-import dao.UserDAO;
 import models.User;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
@@ -51,16 +50,16 @@ public class LoginActivity extends ActionBarActivity {
 	public void clickLogin (View view) {
 		String username = editText_username.getText().toString();
 		String password = editText_password.getText().toString();
-		UserDAO userDao = UserDAO.getInstance(getApplicationContext());
-		userToBeLogged = userDao.selectByUsername(username);
+		userToBeLogged = userToBeLogged.verifyExistingUser(username, password, getApplicationContext());
 		
-		if(userToBeLogged.getUsername() != null && userToBeLogged.getPassword().equals(password)) {
+		if(userToBeLogged != null) {
 			Intent i = new Intent();
 			i.setClass(this, MainActivity.class);
 			i.putExtra ("User", userToBeLogged);
 			startActivity(i);
 			}
 		else {
+			userToBeLogged = new User();
 			textView_errorLogin.setVisibility(1);
 			editText_username.setText("");
 			editText_password.setText("");

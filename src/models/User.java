@@ -2,6 +2,10 @@ package models;
 
 import java.io.Serializable;
 
+import android.content.Context;
+
+import dao.UserDAO;
+
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -12,6 +16,7 @@ public class User implements Serializable {
 	private int age;
 	private String education;
 	private String sex;
+	private UserDAO userDao;
 	
 	public User () {
 		this.name = null;
@@ -90,5 +95,16 @@ public class User implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public User verifyExistingUser (String username, String password, Context context) {
+		User user = new User();
+		userDao = UserDAO.getInstance(context);
+		user = userDao.selectByUsername(username);
+		
+		if (user.getUsername() != null && user.getPassword().equals(password)) 
+			return user;
+		else
+			return null;
 	}
 }
