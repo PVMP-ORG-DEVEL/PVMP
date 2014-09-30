@@ -105,7 +105,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		}
 		
 		fragmentTransaction.replace(R.id.frameLayout_main, newFragment);
-		fragmentTransaction.addToBackStack(null);
+		//fragmentTransaction.addToBackStack(null);
 		fragmentTransaction.commit();
 	}
 	

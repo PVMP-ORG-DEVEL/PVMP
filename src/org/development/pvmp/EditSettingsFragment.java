@@ -25,6 +25,7 @@ public class EditSettingsFragment extends Fragment{
 	private FragmentManager fragmentManager;
 	private Button button_save;
 	private MainActivity mainActivity;
+	private User loggedUser;
 	
 	public View onCreateView(LayoutInflater inflater,
 							 ViewGroup container,
@@ -33,18 +34,26 @@ public class EditSettingsFragment extends Fragment{
 		
 		View viewEditSettings = inflater.inflate(R.layout.edit_settings_fragment, container, false);
 		
+		mainActivity = (MainActivity) getActivity();
+		loggedUser = mainActivity.getLoggedUser();
+		
 		editText_editName = (EditText) viewEditSettings.findViewById(R.id.editText_editName);
 		editText_editEmail = (EditText) viewEditSettings.findViewById(R.id.editText_editEmail);
 		editText_editAge = (EditText) viewEditSettings.findViewById(R.id.editText_editAge);
 		// radioButton_editEducation = (RadioGroup) viewEditSettings.findViewById(R.id.editText_editName);
 		editText_oldPassword = (EditText) viewEditSettings.findViewById(R.id.editText_oldPassword);
 		editText_newPassword = (EditText) viewEditSettings.findViewById(R.id.editText_newPassword);
-				
+		
+		clickSave();
+		
 		return viewEditSettings;		
 	}
 	
 	public void clickSave () {
+		//UserDAO userDao = UserDAO.getInstance(mainActivity.getApplicationContext());
+		//userDao.edit(loggedUser);
 		button_save.setOnClickListener(new OnClickListener () {
+			@Override
 			public void onClick(View v) {
 				mainActivity.changeFragment(3);
 			}
