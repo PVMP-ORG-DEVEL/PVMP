@@ -48,39 +48,71 @@ public class UserRegisterActivity extends Activity {
 		this.editText_userPassword = (EditText) findViewById(R.id.editText_password_register);
 	}
 	
-	public void clickRegister (View view) {
-		
-		registeredUser.setUsername(this.editText_userName.getText().toString());
-		if(registeredUser.validateExistingUser(registeredUser.getUsername(), getApplicationContext())){
-			setUserData();
-		
-			Intent i = new Intent();
-			i.setClass(this, MainActivity.class);
-			i.putExtra("User", registeredUser);
-			startActivity(i);
-			this.finish();}
-		else{
-			Context context = getApplicationContext();
-			CharSequence text = "Nome de usuário já cadastrado.";
-			int duration = Toast.LENGTH_LONG;
+	public void emailError(){
+		Context context = getApplicationContext();
+		CharSequence text = "Email já cadastrado.";
+		int duration = Toast.LENGTH_LONG;
 
-			Toast toast = Toast.makeText(context, text, duration);
-			toast.setGravity(Gravity.CENTER, 0, 0);
-			toast.show();
-			editText_userName.setText("");
-			editText_userPassword.setText("");
-			editText_userName.setFocusableInTouchMode(true);
-			editText_userName.requestFocus();
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
+	}
+	
+	public void usernameError(){
+		Context context = getApplicationContext();
+		CharSequence text = "Nome de usuário já cadastrado.";
+		int duration = Toast.LENGTH_LONG;
+
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
+		editText_userName.setText("");
+		editText_userPassword.setText("");
+		editText_userName.setFocusableInTouchMode(true);
+		editText_userName.requestFocus();
+	}
+	
+	public void fieldsError(){
+		Context context = getApplicationContext();
+		CharSequence text = "Informações inválidas nos campos.";
+		int duration = Toast.LENGTH_LONG;
+
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
+	}
+	
+	public void clickRegister (View view) {
+		registeredUser.setName(this.editText_trueName.getText().toString());
+		registeredUser.setEmail(this.editText_userEmail.getText().toString());
+		registeredUser.setAge(Integer.parseInt(this.editText_userAge.getText().toString()));
+		registeredUser.setUsername(this.editText_userName.getText().toString());
+		registeredUser.setPassword(this.editText_userPassword.getText().toString());
+		
+		if(registeredUser.validateExistingUser(registeredUser.getUsername(), getApplicationContext())){
+			if(registeredUser.validateExistingEmail(registeredUser.getEmail(), getApplicationContext())){
+				if(registeredUser.validateFields(registeredUser.getPassword(), registeredUser.getName(),
+						registeredUser.getEmail(), registeredUser.getAge())){
+					setUserData();
+					
+					Intent i = new Intent();
+					i.setClass(this, MainActivity.class);
+					i.putExtra("User", registeredUser);
+					startActivity(i);
+					this.finish();
+					}
+				else fieldsError();
+			}
+			else emailError();
 		}
+		else usernameError();
 	}
 	
 	public void setUserData() {
 		String education = null;
 		String sex = null;
 		
-		registeredUser.setName(this.editText_trueName.getText().toString());
-		registeredUser.setEmail(this.editText_userEmail.getText().toString());
-		registeredUser.setAge(Integer.parseInt(this.editText_userAge.getText().toString()));
+		
 		
 		switch (radioGroup_education.getCheckedRadioButtonId()) {
 			case R.id.radio_elementarySchool:
@@ -111,8 +143,8 @@ public class UserRegisterActivity extends Activity {
 		 *  de uma vez, pq o username tá definido como primary key. Então,
 		 *  se forem testar um outro cadastro, mudem o username aí de baixo.
 		 */
-		registeredUser.setUsername(this.editText_userName.getText().toString());
-		registeredUser.setPassword(this.editText_userPassword.getText().toString());
+		
+		
 		userDao.save(registeredUser);
 	}
 }
