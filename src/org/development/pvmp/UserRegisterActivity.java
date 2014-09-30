@@ -32,6 +32,10 @@ public class UserRegisterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_register_activity);
 		
+		takeDataFromView();
+	}
+	
+	public void takeDataFromView () {
 		this.editText_trueName = (EditText) findViewById(R.id.editText_trueName);
 		this.editText_userEmail = (EditText) findViewById(R.id.editText_userEmail);
 		this.editText_userAge = (EditText) findViewById(R.id.editText_userAge);

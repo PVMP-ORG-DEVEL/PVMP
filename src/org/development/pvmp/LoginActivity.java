@@ -23,9 +23,7 @@ public class LoginActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_activity);
 		
-		editText_username = (EditText) findViewById(R.id.editText_username);
-		editText_password = (EditText) findViewById(R.id.editText_password);
-		textView_errorLogin = (TextView) findViewById(R.id.textView_errorLogin);
+		takeDataFromView();
 	}
 
 	@Override
@@ -41,6 +39,12 @@ public class LoginActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void takeDataFromView () {
+		editText_username = (EditText) findViewById(R.id.editText_username);
+		editText_password = (EditText) findViewById(R.id.editText_password);
+		textView_errorLogin = (TextView) findViewById(R.id.textView_errorLogin);
 	}
 	
 	/*

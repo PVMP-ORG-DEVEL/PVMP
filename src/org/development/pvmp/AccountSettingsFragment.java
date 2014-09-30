@@ -34,20 +34,23 @@ public class AccountSettingsFragment extends Fragment {
 		
 		mainActivity = (MainActivity) getActivity();
 		loggedUser = mainActivity.getLoggedUser();
-		
-		textView_showName = (TextView) viewAccountSettings.findViewById(R.id.textView_showName);
-		textView_showEmail = (TextView) viewAccountSettings.findViewById(R.id.textView_showEmail);
-		textView_showAge = (TextView) viewAccountSettings.findViewById(R.id.textView_showAge);
-		textView_showEducation = (TextView) viewAccountSettings.findViewById(R.id.textView_showEducation);
-		textView_showSex = (TextView) viewAccountSettings.findViewById(R.id.textView_showSex);
-		textView_showUsername = (TextView) viewAccountSettings.findViewById(R.id.textView_showUsername);
-		textView_showPassword = (TextView) viewAccountSettings.findViewById(R.id.textView_showPassword);
-		button_edit = (Button) viewAccountSettings.findViewById(R.id.button_edit);
 	
+		takeDataFromView (viewAccountSettings);
 		setScreenData();
 		clickEdit();
 		
 		return viewAccountSettings;
+	}
+	
+	public void takeDataFromView (View v) {
+		textView_showName = (TextView) v.findViewById(R.id.textView_showName);
+		textView_showEmail = (TextView) v.findViewById(R.id.textView_showEmail);
+		textView_showAge = (TextView) v.findViewById(R.id.textView_showAge);
+		textView_showEducation = (TextView) v.findViewById(R.id.textView_showEducation);
+		textView_showSex = (TextView) v.findViewById(R.id.textView_showSex);
+		textView_showUsername = (TextView) v.findViewById(R.id.textView_showUsername);
+		textView_showPassword = (TextView) v.findViewById(R.id.textView_showPassword);
+		button_edit = (Button) v.findViewById(R.id.button_edit);
 	}
 	
 	public void setScreenData () {
