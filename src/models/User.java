@@ -113,10 +113,10 @@ public class User implements Serializable {
 		userDao = UserDAO.getInstance(context);
 		user = userDao.selectByEmail(email);
 		
-		if (user.getEmail() == null){
+		if (user.getEmail() == null)
 			return true;
-		}
-		else return false;
+		else 
+			return false;
 	}
 	
 	public Boolean validateExistingUser (String username, Context context){
@@ -124,44 +124,44 @@ public class User implements Serializable {
 		userDao = UserDAO.getInstance(context);
 		user = userDao.selectByUsername(username);
 		
-		if (user.getUsername() == null){
+		if (user.getUsername() == null)
 			return true;
-		}
-		else return false;
+		else 
+			return false;
 	}
 	
 	public Boolean validatePassword(String password){
-		if(password != null && password.length()>=6 && password.length()<=15){
+		if(password != null && password.length()>=6 && password.length()<=15)
 			return true;
-		}
-		else return false;
+		else
+			return false;
 	}
 	
 	public Boolean validateName(String name){
-		if(name != null && name.length()<=50){
+		if(name != null && name.length()<=50)
 			return true;
-		}
-		else return false;
+		else
+			return false;
 	}
 	
 	public Boolean validateEmail(String email){
-		if(email != null && email.length()<=40){
+		if(email != null && email.length()<=40)
 			return true;
-		}
-		else return false;
+		else 
+			return false;
 	}
 	
 	public Boolean validateAge(int age){
-		if(age > 0 && age < 120){
+		if(age > 0 && age < 120)
 			return true;
-		}
-		else return false;
+		else
+			return false;
 	}
 	
 	public Boolean validateFields(String password, String name, String email, int age ){
-		if(validateAge(age) && validateEmail(email) && validateName(name) && validatePassword(password)){
+		if(validateAge(age) && validateEmail(email) && validateName(name) && validatePassword(password))
 			return true;
-		}
-		else return false;
+		else 
+			return false;
 	}
 }

@@ -29,11 +29,17 @@ public class UserRegisterActivity extends Activity {
 	private RadioGroup radioGroup_sex;
 	private EditText editText_userName;
 	private EditText editText_userPassword;
-	private User registeredUser = new User();
+	private User registeredUser;
+	public Context context;
+	private UserDAO userDao;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_register_activity);
+		
+		this.registeredUser = new User();
+		this.context = getApplicationContext();
+		this.userDao = UserDAO.getInstance(getApplicationContext());	
 		
 		takeDataFromView();
 	}
@@ -49,51 +55,28 @@ public class UserRegisterActivity extends Activity {
 	}
 	
 	public void emailError(){
-		Context context = getApplicationContext();
-		CharSequence text = "Email já cadastrado.";
-		int duration = Toast.LENGTH_LONG;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.setGravity(Gravity.CENTER, 0, 0);
-		toast.show();
+		showErrorToast("Email já cadastrado.");
+		requestAttention(this.editText_userEmail);
 	}
 	
 	public void usernameError(){
-		Context context = getApplicationContext();
-		CharSequence text = "Nome de usuário já cadastrado.";
-		int duration = Toast.LENGTH_LONG;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.setGravity(Gravity.CENTER, 0, 0);
-		toast.show();
-		editText_userName.setText("");
+		showErrorToast("Nome de usuário já cadastro.");
 		editText_userPassword.setText("");
-		editText_userName.setFocusableInTouchMode(true);
-		editText_userName.requestFocus();
+		requestAttention(this.editText_userName);
 	}
 	
 	public void fieldsError(){
-		Context context = getApplicationContext();
-		CharSequence text = "Informações inválidas nos campos.";
-		int duration = Toast.LENGTH_LONG;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.setGravity(Gravity.CENTER, 0, 0);
-		toast.show();
+		showErrorToast("Informações inválidas nos campos.");
 	}
 	
 	public void clickRegister (View view) {
-		registeredUser.setName(this.editText_trueName.getText().toString());
-		registeredUser.setEmail(this.editText_userEmail.getText().toString());
-		registeredUser.setAge(Integer.parseInt(this.editText_userAge.getText().toString()));
-		registeredUser.setUsername(this.editText_userName.getText().toString());
-		registeredUser.setPassword(this.editText_userPassword.getText().toString());
-		
-		if(registeredUser.validateExistingUser(registeredUser.getUsername(), getApplicationContext())){
-			if(registeredUser.validateExistingEmail(registeredUser.getEmail(), getApplicationContext())){
+		setUserData();
+		if(registeredUser.validateExistingUser(registeredUser.getUsername(), context)){
+			if(registeredUser.validateExistingEmail(registeredUser.getEmail(), context)){
 				if(registeredUser.validateFields(registeredUser.getPassword(), registeredUser.getName(),
-						registeredUser.getEmail(), registeredUser.getAge())){
-					setUserData();
+						registeredUser.getEmail(), registeredUser.getAge())) {
+					
+					userDao.save(registeredUser);
 					
 					Intent i = new Intent();
 					i.setClass(this, MainActivity.class);
@@ -103,16 +86,24 @@ public class UserRegisterActivity extends Activity {
 					}
 				else fieldsError();
 			}
-			else emailError();
+			else {
+				emailError();
+			}
 		}
-		else usernameError();
+		else {
+			usernameError();
+		}
 	}
 	
 	public void setUserData() {
 		String education = null;
 		String sex = null;
 		
-		
+		this.registeredUser.setName(this.editText_trueName.getText().toString());
+		registeredUser.setEmail(this.editText_userEmail.getText().toString());
+		registeredUser.setAge(Integer.parseInt(this.editText_userAge.getText().toString()));
+		registeredUser.setUsername(this.editText_userName.getText().toString());
+		registeredUser.setPassword(this.editText_userPassword.getText().toString());
 		
 		switch (radioGroup_education.getCheckedRadioButtonId()) {
 			case R.id.radio_elementarySchool:
@@ -136,15 +127,19 @@ public class UserRegisterActivity extends Activity {
 				break;
 		}
 		registeredUser.setSex(sex);
-		UserDAO userDao = UserDAO.getInstance(getApplicationContext());
-		/*
-		 * as linhas abaixo vao ser mudadas, só foram definidas assim pq
-		 *  os campos n cabem na tela. cuidado qnd forem testar o banco mais
-		 *  de uma vez, pq o username tá definido como primary key. Então,
-		 *  se forem testar um outro cadastro, mudem o username aí de baixo.
-		 */
-		
-		
-		userDao.save(registeredUser);
+	}
+	
+	public void requestAttention (EditText editText) {
+		editText.setText("");
+		editText.setFocusableInTouchMode(true);
+		editText.requestFocus();
+	}
+	
+	public void showErrorToast (CharSequence text) {
+		int duration = Toast.LENGTH_LONG;
+
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
 	}
 }
