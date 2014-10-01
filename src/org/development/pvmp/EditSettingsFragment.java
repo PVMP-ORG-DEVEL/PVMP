@@ -98,7 +98,12 @@ public class EditSettingsFragment extends Fragment{
 		loggedUser.setEducation(education);
 		
 		if (!editText_oldPassword.getText().toString().equals("") &&
-				!editText_newPassword.getText().toString().equals(""))
+				!editText_newPassword.getText().toString().equals("")&&
+				loggedUser.getPassword().equals(editText_oldPassword))
 			loggedUser.setPassword(this.editText_newPassword.getText().toString());
+		else if(!editText_oldPassword.getText().toString().equals("") && 
+					!loggedUser.getPassword().equals(editText_oldPassword)){
+			ErrorHandlingUtil.genericError(editText_oldPassword, "Senha antiga não correspodente.", getActivity());
+		}
 	}
 }

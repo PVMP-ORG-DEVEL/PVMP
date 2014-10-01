@@ -44,6 +44,7 @@
          <item>@drawable/ic_settings</item>
          <item>@drawable/ic_logout</item>
      </array>
+         <string name="passwordWarning">Caso não queria mudar sua senha, deixe o campo de senha antiga em branco.</string>
         
 
 </resources>
