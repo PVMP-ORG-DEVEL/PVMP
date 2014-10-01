@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class LoginActivity extends ActionBarActivity {
 
-	private User userToBeLogged = new User();
+	private User userToBeLogged;
 	private EditText editText_username;
 	private EditText editText_password;
 	private TextView textView_errorLogin;
@@ -22,6 +22,8 @@ public class LoginActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_activity);
+		
+		userToBeLogged = new User();
 		
 		takeDataFromView();
 	}
@@ -86,6 +88,7 @@ public class LoginActivity extends ActionBarActivity {
 	 * some features of the app.
 	 */
     public void clickGuest (View view) {
+    	userToBeLogged = null;
     	Intent i = new Intent();
     	i.setClass(this, MainActivity.class);
     	i.putExtra("User", userToBeLogged);

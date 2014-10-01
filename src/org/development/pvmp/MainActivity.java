@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +30,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 	private ListView drawerList_main;
 	private FragmentManager fragmentManager;
 	private static User loggedUser;
+	public Context context;
 	
 
     public User getLoggedUser() {
@@ -44,6 +46,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
         this.drawerList_main = (ListView)findViewById(R.id.drawerList_main);
         this.fragmentManager = getSupportFragmentManager();
         loggedUser = (User) getIntent().getSerializableExtra("User");
+        context = getApplicationContext();
         
         this.drawerList_main.setOnItemClickListener(this);
     }
@@ -66,13 +69,10 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,	long id) {
-		String[] menuOptions = getResources().getStringArray(R.array.navigationOptions_main);
-		
 		if (position == 4) {
 			leaveActivity();
 		}
 		else {
-			this.changeTitle(menuOptions[position]);
 			this.changeFragment(position);
 			this.drawerLayout_main.closeDrawers();
 		}
@@ -83,6 +83,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 	}
 	
 	public void changeFragment(int position) {
+		String[] menuOptions = getResources().getStringArray(R.array.navigationOptions_main);
 		android.support.v4.app.FragmentTransaction fragmentTransaction;
 		fragmentTransaction = this.fragmentManager.beginTransaction();
 		Fragment newFragment;
@@ -98,9 +99,14 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 				newFragment = new AccountSettingsFragment();
 		}
 		
-		fragmentTransaction.replace(R.id.frameLayout_main, newFragment);
-		fragmentTransaction.addToBackStack(null);
-		fragmentTransaction.commit();
+		if (loggedUser == null && position == 3) 
+			ErrorHandlingUtil.showToast("Você deve estar logado para acessar essa área!", context);
+		else {
+			this.changeTitle(menuOptions[position]);
+			fragmentTransaction.replace(R.id.frameLayout_main, newFragment);
+			fragmentTransaction.addToBackStack(null);
+			fragmentTransaction.commit();
+		}
 	}
 	
 	public void clickDelete(View view){
