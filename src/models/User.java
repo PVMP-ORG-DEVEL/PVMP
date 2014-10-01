@@ -7,7 +7,7 @@ import android.content.Context;
 import dao.UserDAO;
 
 public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -6329621094685424751L;
 	
 	private String username;
 	private String password;
@@ -16,7 +16,7 @@ public class User implements Serializable {
 	private int age;
 	private String education;
 	private String sex;
-	private UserDAO userDao;
+	private static UserDAO userDao;
 	
 	public User () {
 		this.name = null;

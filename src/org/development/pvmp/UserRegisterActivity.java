@@ -29,7 +29,7 @@ public class UserRegisterActivity extends Activity {
 	private RadioGroup radioGroup_sex;
 	private EditText editText_userName;
 	private EditText editText_userPassword;
-	private User registeredUser;
+	private static User registeredUser;
 	public Context context;
 	private UserDAO userDao;
 	
@@ -37,7 +37,7 @@ public class UserRegisterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_register_activity);
 		
-		this.registeredUser = new User();
+		registeredUser = new User();
 		this.context = getApplicationContext();
 		this.userDao = UserDAO.getInstance(getApplicationContext());	
 		
@@ -71,6 +71,9 @@ public class UserRegisterActivity extends Activity {
 	
 	public void clickRegister (View view) {
 		setUserData();
+		
+		registeredUser.setUsername("HUAHUAaaHUA");
+		registeredUser.setPassword("LAJDaaIJDI");
 		if(registeredUser.validateExistingUser(registeredUser.getUsername(), context)){
 			if(registeredUser.validateExistingEmail(registeredUser.getEmail(), context)){
 				if(registeredUser.validateFields(registeredUser.getPassword(), registeredUser.getName(),
@@ -82,7 +85,6 @@ public class UserRegisterActivity extends Activity {
 					i.setClass(this, MainActivity.class);
 					i.putExtra("User", registeredUser);
 					startActivity(i);
-					this.finish();
 					}
 				else fieldsError();
 			}
@@ -99,7 +101,7 @@ public class UserRegisterActivity extends Activity {
 		String education = null;
 		String sex = null;
 		
-		this.registeredUser.setName(this.editText_trueName.getText().toString());
+		registeredUser.setName(this.editText_trueName.getText().toString());
 		registeredUser.setEmail(this.editText_userEmail.getText().toString());
 		registeredUser.setAge(Integer.parseInt(this.editText_userAge.getText().toString()));
 		registeredUser.setUsername(this.editText_userName.getText().toString());

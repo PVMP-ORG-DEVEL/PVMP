@@ -28,18 +28,12 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 	private DrawerLayout drawerLayout_main;
 	private ListView drawerList_main;
 	private FragmentManager fragmentManager;
-	private User loggedUser;
+	private static User loggedUser;
 	
 
     public User getLoggedUser() {
 		return loggedUser;
 	}
-
-
-	public void setLoggedUser(User loggedUser) {
-		this.loggedUser = loggedUser;
-	}
-
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +43,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
         this.drawerLayout_main = (DrawerLayout)findViewById(R.id.drawerLayout_main);
         this.drawerList_main = (ListView)findViewById(R.id.drawerList_main);
         this.fragmentManager = getSupportFragmentManager();
-        this.loggedUser = (User) getIntent().getSerializableExtra("User");
+        loggedUser = (User) getIntent().getSerializableExtra("User");
         
         this.drawerList_main.setOnItemClickListener(this);
     }
