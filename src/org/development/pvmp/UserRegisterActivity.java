@@ -56,7 +56,6 @@ public class UserRegisterActivity extends Activity {
 	public void clickRegister (View view) {
 		setUserData();
 		int validationResult;
-		registeredUser.setPassword("huadhuad");
 		
 		validationResult = User.validationResult(registeredUser, context);
 		
