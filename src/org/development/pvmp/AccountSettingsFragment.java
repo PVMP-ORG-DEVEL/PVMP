@@ -19,7 +19,6 @@ public class AccountSettingsFragment extends Fragment {
 	private TextView textView_showEducation;
 	private TextView textView_showSex;
 	private TextView textView_showUsername;
-	private TextView textView_showPassword;
 	private Button button_edit;
 	private MainActivity mainActivity;
 	private User loggedUser;
@@ -49,7 +48,6 @@ public class AccountSettingsFragment extends Fragment {
 		textView_showEducation = (TextView) v.findViewById(R.id.textView_showEducation);
 		textView_showSex = (TextView) v.findViewById(R.id.textView_showSex);
 		textView_showUsername = (TextView) v.findViewById(R.id.textView_showUsername);
-		textView_showPassword = (TextView) v.findViewById(R.id.textView_showPassword);
 		button_edit = (Button) v.findViewById(R.id.button_edit);
 	}
 	
@@ -60,7 +58,6 @@ public class AccountSettingsFragment extends Fragment {
 		textView_showEducation.setText(loggedUser.getEducation());
 		textView_showSex.setText(loggedUser.getSex());
 		textView_showUsername.setText(loggedUser.getUsername());
-		textView_showPassword.setText(loggedUser.getPassword());
 	}
 	
 	public void clickEdit () {

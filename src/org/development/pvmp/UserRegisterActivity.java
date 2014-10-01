@@ -71,9 +71,7 @@ public class UserRegisterActivity extends Activity {
 	
 	public void clickRegister (View view) {
 		setUserData();
-		
-		registeredUser.setUsername("HUAHUAaaHUA");
-		registeredUser.setPassword("LAJDaaIJDI");
+
 		if(registeredUser.validateExistingUser(registeredUser.getUsername(), context)){
 			if(registeredUser.validateExistingEmail(registeredUser.getEmail(), context)){
 				if(registeredUser.validateFields(registeredUser.getPassword(), registeredUser.getName(),
