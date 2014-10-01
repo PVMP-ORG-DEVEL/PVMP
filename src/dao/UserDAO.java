@@ -17,7 +17,6 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 public class UserDAO {
-
 	public static final String TABLE_NAME = "USER";
 	public static final String COLUMN_USERNAME = "USERNAME";
 	public static final String COLUMN_PASSWORD = "PASSWORD";
