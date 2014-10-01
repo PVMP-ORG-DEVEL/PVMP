@@ -138,30 +138,45 @@ public class User implements Serializable {
 	}
 	
 	public Boolean validateName(String name){
-		if(name != null && name.length()<=50)
+		if(name != null && name.length()<=50 && name.matches("[a-zA-Z]+"))
 			return true;
 		else
 			return false;
 	}
 	
 	public Boolean validateEmail(String email){
-		if(email != null && email.length()<=40)
+		if(email != null && email.length()<=40 && email.length() >= 10)
 			return true;
 		else 
 			return false;
 	}
 	
 	public Boolean validateAge(int age){
-		if(age > 0 && age < 120)
+		if(age > 10 && age < 99)
 			return true;
 		else
 			return false;
 	}
 	
-	public Boolean validateFields(String password, String name, String email, int age ){
-		if(validateAge(age) && validateEmail(email) && validateName(name) && validatePassword(password))
-			return true;
-		else 
-			return false;
+	public static int validationResult (User user, Context context) {
+		if (!user.validateExistingUser(user.getUsername(), context)) 
+			return 1;
+		
+		if(!user.validateExistingEmail(user.getEmail(), context)) 
+			return 2;
+		
+		if (!user.validatePassword(user.getPassword())) 
+			return 3;
+		
+		if (!user.validateName(user.getName()))
+			return 4;
+		
+		if (!user.validateEmail(user.getEmail()))
+			return 5;
+		
+		if (!user.validateAge(user.getAge()))
+			return 6;
+		
+		return 0;
 	}
 }

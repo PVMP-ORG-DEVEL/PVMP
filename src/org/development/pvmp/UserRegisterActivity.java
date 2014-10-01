@@ -10,15 +10,14 @@ package org.development.pvmp;
 
 import dao.UserDAO;
 import models.User;
+import org.development.pvmp.ErrorHandlingUtil;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 public class UserRegisterActivity extends Activity {
 	
@@ -54,46 +53,44 @@ public class UserRegisterActivity extends Activity {
 		this.editText_userPassword = (EditText) findViewById(R.id.editText_password_register);
 	}
 	
-	public void emailError(){
-		showErrorToast("Email já cadastrado.");
-		requestAttention(this.editText_userEmail);
-	}
-	
-	public void usernameError(){
-		showErrorToast("Nome de usuário já cadastro.");
-		editText_userPassword.setText("");
-		requestAttention(this.editText_userName);
-	}
-	
-	public void fieldsError(){
-		showErrorToast("Informações inválidas nos campos.");
-	}
-	
 	public void clickRegister (View view) {
 		setUserData();
-
-		if(registeredUser.validateExistingUser(registeredUser.getUsername(), context)){
-			if(registeredUser.validateExistingEmail(registeredUser.getEmail(), context)){
-				if(registeredUser.validateFields(registeredUser.getPassword(), registeredUser.getName(),
-						registeredUser.getEmail(), registeredUser.getAge())) {
-					
-					userDao.save(registeredUser);
-					
-					Intent i = new Intent();
-					i.setClass(this, MainActivity.class);
-					i.putExtra("User", registeredUser);
-					startActivity(i);
-					}
-				else fieldsError();
-			}
-			else {
-				emailError();
-			}
-		}
-		else {
-			usernameError();
+		int validationResult;
+		
+		validationResult = User.validationResult(registeredUser, context);
+		
+		switch(validationResult) {
+			case 0:					
+				userDao.save(registeredUser);
+				
+				ErrorHandlingUtil.showToast("Cadastro realizado com sucesso!", context);
+				
+				Intent i = new Intent();
+				i.setClass(this, MainActivity.class);
+				i.putExtra("User", registeredUser);
+				startActivity(i);
+				break;
+			case 1:
+				ErrorHandlingUtil.genericError(editText_userName, "Nome de usuário já existente.", context, true);
+				break;
+			case 2:
+				ErrorHandlingUtil.genericError(editText_userEmail, "Email já existente.", context, true);
+				break;
+			case 3:
+				ErrorHandlingUtil.genericError(editText_userPassword, "Sua senha deve ter de 6 a 15 caracteres.", context, true);
+				break;
+			case 4:
+				ErrorHandlingUtil.genericError(editText_trueName, "Nome inválido.", context, true);
+				break;
+			case 5:
+				ErrorHandlingUtil.genericError(editText_userEmail, "Seu email deve ter de 10 a 40 caracteres.", context, true);
+				break;
+			case 6:
+				ErrorHandlingUtil.genericError(editText_userAge, "Sua idade tem de estar entre o intervalo 10-99.", context, true);
+				break;
 		}
 	}
+				
 	
 	public void setUserData() {
 		String education = null;
@@ -127,19 +124,5 @@ public class UserRegisterActivity extends Activity {
 				break;
 		}
 		registeredUser.setSex(sex);
-	}
-	
-	public void requestAttention (EditText editText) {
-		editText.setText("");
-		editText.setFocusableInTouchMode(true);
-		editText.requestFocus();
-	}
-	
-	public void showErrorToast (CharSequence text) {
-		int duration = Toast.LENGTH_LONG;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.setGravity(Gravity.CENTER, 0, 0);
-		toast.show();
 	}
 }
