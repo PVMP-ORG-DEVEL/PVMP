@@ -3,142 +3,159 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <RadioGroup
-        android:id="@+id/radioGroup_sex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/radioGroup_education"
-        android:layout_marginRight="18dp" >
-
-        <RadioButton
-            android:id="@+id/radio_male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/text_sex_male" />
-
-        <RadioButton
-            android:id="@+id/radio_female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_sex_female" />
-    </RadioGroup>
-
-    <EditText
-        android:id="@+id/editText_trueName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="14dp"
-        android:ems="10"
-        android:hint="@string/text_name"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/editText_userEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText_trueName"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="@string/text_email"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/editText_userAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText_userEmail"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="@string/text_age"
-        android:inputType="number" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup_education"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView_education"
-        android:layout_marginTop="14dp" >
-
-        <RadioButton
-            android:id="@+id/radio_elementarySchool"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/text_elementary_school" />
-
-        <RadioButton
-            android:id="@+id/radio_highSchool"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_high_school" />
-
-        <RadioButton
-            android:id="@+id/radio_graduated"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_graduated" />
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/textView_education"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/radioGroup_education"
-        android:layout_below="@+id/editText_userAge"
-        android:layout_marginTop="16dp"
-        android:text="@string/text_education"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/editText_username_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/radioGroup_education"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="@string/text_username" />
-
-    <EditText
-        android:id="@+id/editText_password_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText_username_register"
-        android:ems="10"
-        android:hint="@string/text_password"
-        android:inputType="textPassword" />
-
-    <Button
-        android:id="@+id/button_register"
+    <ScrollView
+        android:id="@+id/scrollView_userRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:text="@string/text_register" 
-    	android:onClick="clickRegister" />
-
-    <TextView
-        android:id="@+id/textView_showName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/radioGroup_education"
-        android:layout_alignLeft="@+id/radioGroup_sex"
-        android:layout_marginLeft="29dp"
-        android:text="@string/text_sex"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_alignParentTop="true" >
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        
+	    <RadioGroup
+	        android:id="@+id/radioGroup_sex"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:layout_alignTop="@+id/radioGroup_education"
+	        android:layout_marginRight="18dp" >
+	
+	        <RadioButton
+	            android:id="@+id/radio_male"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:checked="true"
+	            android:text="@string/text_sex_male" />
+	
+	        <RadioButton
+	            android:id="@+id/radio_female"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/text_sex_female" />
+	    </RadioGroup>
+	
+	    <EditText
+	        android:id="@+id/editText_trueName"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginTop="14dp"
+	        android:ems="10"
+	        android:hint="@string/text_name"
+	        android:inputType="textPersonName" />
+	
+	    <EditText
+	        android:id="@+id/editText_userEmail"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
+	        android:layout_below="@+id/editText_trueName"
+	        android:layout_marginTop="15dp"
+	        android:ems="10"
+	        android:hint="@string/text_email"
+	        android:inputType="textEmailAddress" />
+	
+	    <EditText
+	        android:id="@+id/editText_userAge"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
+	        android:layout_below="@+id/editText_userEmail"
+	        android:layout_marginTop="15dp"
+	        android:ems="10"
+	        android:hint="@string/text_age"
+	        android:inputType="number" />
+	
+	    <RadioGroup
+	        android:id="@+id/radioGroup_education"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@+id/textView_education"
+	        android:layout_marginTop="14dp" >
+	
+	        <RadioButton
+	            android:id="@+id/radio_elementarySchool"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:checked="true"
+	            android:text="@string/text_elementary_school" />
+	
+	        <RadioButton
+	            android:id="@+id/radio_highSchool"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/text_high_school" />
+	
+	        <RadioButton
+	            android:id="@+id/radio_graduated"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/text_graduated" />
+	    </RadioGroup>
+	
+	    <TextView
+	        android:id="@+id/textView_education"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignRight="@+id/radioGroup_education"
+	        android:layout_below="@+id/editText_userAge"
+	        android:layout_marginTop="16dp"
+	        android:text="@string/text_education"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	    <EditText
+	        android:id="@+id/editText_username_register"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
+	        android:layout_below="@+id/radioGroup_education"
+	        android:layout_marginTop="24dp"
+	        android:ems="10"
+	        android:hint="@string/text_username" />
+	
+	    <EditText
+	        android:id="@+id/editText_password_register"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
+	        android:layout_below="@+id/editText_username_register"
+	        android:ems="10"
+	        android:hint="@string/text_password"
+	        android:inputType="textPassword" />
+	
+	    <Button
+	        android:id="@+id/button_register"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
+	        android:layout_below="@+id/editText_password_register"
+	        android:text="@string/text_register" 
+	    	android:onClick="clickRegister" />
+	
+	    <TextView
+	        android:id="@+id/textView_showName"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_above="@+id/radioGroup_education"
+	        android:layout_alignLeft="@+id/radioGroup_sex"
+	        android:layout_marginLeft="29dp"
+	        android:text="@string/text_sex"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	    </RelativeLayout>
+    
+    </ScrollView>
 
 </RelativeLayout>
