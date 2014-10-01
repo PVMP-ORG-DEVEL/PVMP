@@ -102,7 +102,8 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		if (loggedUser == null && position == 3) 
 			ErrorHandlingUtil.showToast("Você deve estar logado para acessar essa área!", context);
 		else {
-			this.changeTitle(menuOptions[position]);
+			if (position >= 0 && position < 4)
+				this.changeTitle(menuOptions[position]);
 			fragmentTransaction.replace(R.id.frameLayout_main, newFragment);
 			fragmentTransaction.addToBackStack(null);
 			fragmentTransaction.commit();
