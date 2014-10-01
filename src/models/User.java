@@ -108,7 +108,7 @@ public class User implements Serializable {
 			return null;
 	}
 	
-	public Boolean validateExistingEmail (String email, Context context){
+	public boolean validateExistingEmail (String email, Context context){
 		User user = new User();
 		userDao = UserDAO.getInstance(context);
 		user = userDao.selectByEmail(email);
@@ -119,7 +119,7 @@ public class User implements Serializable {
 			return false;
 	}
 	
-	public Boolean validateExistingUser (String username, Context context){
+	public boolean validateExistingUser (String username, Context context){
 		User user = new User();
 		userDao = UserDAO.getInstance(context);
 		user = userDao.selectByUsername(username);
@@ -130,29 +130,36 @@ public class User implements Serializable {
 			return false;
 	}
 	
-	public Boolean validatePassword(String password){
+	public boolean validatePassword(String password){
 		if(password != null && password.length()>=6 && password.length()<=15)
 			return true;
 		else
 			return false;
 	}
 	
-	public Boolean validateName(String name){
+	public boolean validateName(String name){
 		if(name != null && name.length()<=50 && name.matches("[a-zA-Z]+"))
 			return true;
 		else
 			return false;
 	}
 	
-	public Boolean validateEmail(String email){
+	public boolean validateEmail(String email){
 		if(email != null && email.length()<=40 && email.length() >= 10)
 			return true;
 		else 
 			return false;
 	}
 	
-	public Boolean validateAge(int age){
+	public boolean validateAge(int age){
 		if(age > 10 && age < 99)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean validateUsername (String username) {
+		if (username.length() >= 3 && username.length() <= 15)
 			return true;
 		else
 			return false;
@@ -176,6 +183,9 @@ public class User implements Serializable {
 		
 		if (!user.validateAge(user.getAge()))
 			return 6;
+		
+		if (!user.validateUsername(user.getUsername()))
+			return 7;
 		
 		return 0;
 	}

@@ -56,6 +56,7 @@ public class UserRegisterActivity extends Activity {
 	public void clickRegister (View view) {
 		setUserData();
 		int validationResult;
+		registeredUser.setPassword("huadhuad");
 		
 		validationResult = User.validationResult(registeredUser, context);
 		
@@ -71,34 +72,38 @@ public class UserRegisterActivity extends Activity {
 				startActivity(i);
 				break;
 			case 1:
-				ErrorHandlingUtil.genericError(editText_userName, "Nome de usuário já existente.", context, true);
+				ErrorHandlingUtil.genericError(editText_userName, "Nome de usuário já existente.", context);
 				break;
 			case 2:
-				ErrorHandlingUtil.genericError(editText_userEmail, "Email já existente.", context, true);
+				ErrorHandlingUtil.genericError(editText_userEmail, "Email já existente.", context);
 				break;
 			case 3:
-				ErrorHandlingUtil.genericError(editText_userPassword, "Sua senha deve ter de 6 a 15 caracteres.", context, true);
+				ErrorHandlingUtil.genericError(editText_userPassword, "Sua senha deve ter de 6 a 15 caracteres.", context);
 				break;
 			case 4:
-				ErrorHandlingUtil.genericError(editText_trueName, "Nome inválido.", context, true);
+				ErrorHandlingUtil.genericError(editText_trueName, "Nome inválido.", context);
 				break;
 			case 5:
-				ErrorHandlingUtil.genericError(editText_userEmail, "Seu email deve ter de 10 a 40 caracteres.", context, true);
+				ErrorHandlingUtil.genericError(editText_userEmail, "Seu email deve ter de 10 a 40 caracteres.", context);
 				break;
 			case 6:
-				ErrorHandlingUtil.genericError(editText_userAge, "Sua idade tem de estar entre o intervalo 10-99.", context, true);
+				ErrorHandlingUtil.genericError(editText_userAge, "Sua idade tem de estar entre o intervalo 10-99.", context);
 				break;
+			case 7:
+				ErrorHandlingUtil.genericError(editText_userName, "Seu nome de usuário deve ter de 3 a 15 caracteres.", context);
 		}
 	}
 				
-	
 	public void setUserData() {
 		String education = null;
 		String sex = null;
 		
 		registeredUser.setName(this.editText_trueName.getText().toString());
 		registeredUser.setEmail(this.editText_userEmail.getText().toString());
-		registeredUser.setAge(Integer.parseInt(this.editText_userAge.getText().toString()));
+		if (this.editText_userAge.getText().toString().equals(""))
+			registeredUser.setAge(0);
+		else
+			registeredUser.setAge(Integer.parseInt(this.editText_userAge.getText().toString()));
 		registeredUser.setUsername(this.editText_userName.getText().toString());
 		registeredUser.setPassword(this.editText_userPassword.getText().toString());
 		
