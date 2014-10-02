@@ -55,8 +55,8 @@ public class UserRegisterActivity extends Activity {
 	
 	public void clickRegister (View view) {
 		setUserData();
-		int validationResult;
 		
+		int validationResult;
 		validationResult = User.validationResult(registeredUser, context);
 		
 		switch(validationResult) {
@@ -70,38 +70,12 @@ public class UserRegisterActivity extends Activity {
 				i.putExtra("User", registeredUser);
 				startActivity(i);
 				break;
-			case 1:
-				ErrorHandlingUtil.genericError(editText_userName, "Nome de usuário já existente.", context);
+			default:
+				ErrorHandlingUtil.displayRegisterError(editText_userName, editText_userEmail,
+													   editText_trueName, editText_userPassword,
+													   editText_userAge, validationResult,
+													   context);
 				break;
-			case 2:
-				ErrorHandlingUtil.genericError(editText_userEmail, "Email já existente.", context);
-				break;
-			case 3:
-				ErrorHandlingUtil.genericError(editText_trueName, "Nome inválido.", context);
-				break;
-			case 4:
-				ErrorHandlingUtil.genericError(editText_trueName, "Seu nome deve ter de 3 a 50 caracteres.", context);
-				break;
-			case 5:
-				ErrorHandlingUtil.genericError(editText_userPassword, "Sua senha deve ter de 6 a 15 caracteres.", context);
-				break;
-			case 6:
-				ErrorHandlingUtil.genericError(editText_userEmail, "Formato de email inválido.", context);
-				break;
-			case 7:
-				ErrorHandlingUtil.genericError(editText_userEmail, "Seu email deve ter, no máximo, 40 caracteres.", context);
-				break;
-			case 8:
-				ErrorHandlingUtil.genericError(editText_userAge, "Sua idade tem de estar entre o intervalo 10-99.", context);
-				break;
-			case 9:
-				ErrorHandlingUtil.genericError(editText_userName, "Seu nome de usuário deve ter de 3 a 15 caracteres.", context);
-				break;
-			case 10:
-				ErrorHandlingUtil.genericError(editText_userName, "Seu nome de usuário deve começar com uma letra.", context);
-				break;
-			case 11:
-				ErrorHandlingUtil.genericError(editText_userName, "Seu nome de usuário deve ser composto apenas de letras e números.", context);
 		}
 	}
 				

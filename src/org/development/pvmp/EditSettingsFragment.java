@@ -34,23 +34,24 @@ public class EditSettingsFragment extends Fragment{
 		mainActivity = (MainActivity) getActivity();
 		loggedUser = mainActivity.getLoggedUser();
 		
-		editText_editName = (EditText) viewEditSettings.findViewById(R.id.editText_editName);
-		editText_editEmail = (EditText) viewEditSettings.findViewById(R.id.editText_editEmail);
-		editText_editAge = (EditText) viewEditSettings.findViewById(R.id.editText_editAge);
-		radioGroup_editEducation = (RadioGroup) viewEditSettings.findViewById(R.id.radioGroup_editEducation);
-		editText_oldPassword = (EditText) viewEditSettings.findViewById(R.id.editText_oldPassword);
-		editText_newPassword = (EditText) viewEditSettings.findViewById(R.id.editText_newPassword);
-		
-		button_save = (Button) viewEditSettings.findViewById(R.id.button_save);
-		
+		takeDataFromView(viewEditSettings);
 		clickSave();
 		setFieldData();
 		
 		return viewEditSettings;		
 	}
 	
+	public void takeDataFromView (View v) {
+		editText_editName = (EditText) v.findViewById(R.id.editText_editName);
+		editText_editEmail = (EditText) v.findViewById(R.id.editText_editEmail);
+		editText_editAge = (EditText) v.findViewById(R.id.editText_editAge);
+		radioGroup_editEducation = (RadioGroup) v.findViewById(R.id.radioGroup_editEducation);
+		editText_oldPassword = (EditText) v.findViewById(R.id.editText_oldPassword);
+		editText_newPassword = (EditText) v.findViewById(R.id.editText_newPassword);
+		button_save = (Button) v.findViewById(R.id.button_save);
+	}
+	
 	public void clickSave () {
-		
 		button_save.setOnClickListener(new OnClickListener () {
 			@Override
 			public void onClick(View v) {
