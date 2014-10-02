@@ -158,7 +158,7 @@ public class User implements Serializable {
 	}
 	
 	public boolean validateAge (int age) {
-		if(age > 10 && age < 99)
+		if(age >= 10 && age <= 99)
 			return true;
 		return false;
 	}
@@ -186,16 +186,16 @@ public class User implements Serializable {
 		if (!user.validateNameSize(user.getName()))
 			return 2;
 		
-		if (!user.validatePassword(user.getPassword())) 
+		if (!user.validateEmailFormat(user.getEmail()))
 			return 3;
 		
-		if (!user.validateEmailFormat(user.getEmail()))
+		if (!user.validateEmailSize(user.getEmail()))
 			return 4;
 		
-		if (!user.validateEmailSize(user.getEmail()))
+		if (!user.validateAge(user.getAge()))
 			return 5;
 		
-		if (!user.validateAge(user.getAge()))
+		if (!user.validatePassword(user.getPassword()))
 			return 6;
 		
 		if(!user.validateExistingEmail(user.getEmail(), context)) 

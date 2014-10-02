@@ -93,7 +93,10 @@ public class EditSettingsFragment extends Fragment{
 	public void saveUserEdition () {
 		loggedUser.setName(this.editText_editName.getText().toString());
 		loggedUser.setEmail(this.editText_editEmail.getText().toString());
-		loggedUser.setAge(Integer.parseInt(this.editText_editAge.getText().toString()));
+		if(this.editText_editAge.getText().toString().equals(""))
+			loggedUser.setAge(0);
+		else
+			loggedUser.setAge(Integer.parseInt(this.editText_editAge.getText().toString()));		
 		
 		String education = null;
 		

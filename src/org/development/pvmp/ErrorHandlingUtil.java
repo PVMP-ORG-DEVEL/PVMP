@@ -38,16 +38,16 @@ public class ErrorHandlingUtil {
 				ErrorHandlingUtil.genericError(et2, "Seu nome deve ter de 3 a 50 caracteres.", context);
 				break;
 			case 3:
-				ErrorHandlingUtil.genericError(et3, "Sua senha deve ter de 6 a 15 caracteres.", context);
-				break;
-			case 4:
 				ErrorHandlingUtil.genericError(et1, "Formato de email inválido.", context);
 				break;
-			case 5:
+			case 4:				
 				ErrorHandlingUtil.genericError(et1, "Seu email deve ter, no máximo, 40 caracteres.", context);
 				break;
-			case 6:
+			case 5:
 				ErrorHandlingUtil.genericError(et4, "Sua idade tem de estar entre o intervalo 10-99.", context);
+				break;
+			case 6:
+				ErrorHandlingUtil.genericError(et3, "Sua senha deve ter de 6 a 15 caracteres.", context);
 				break;
 		}
 	}
