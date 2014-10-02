@@ -2,6 +2,7 @@ package org.development.pvmp;
 
 import dao.UserDAO;
 import models.User;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ public class EditSettingsFragment extends Fragment{
 	private Button button_save;
 	private MainActivity mainActivity;
 	private User loggedUser;
+	private Context context;
 	
 	public View onCreateView(LayoutInflater inflater,
 							 ViewGroup container,
@@ -33,6 +35,7 @@ public class EditSettingsFragment extends Fragment{
 		
 		mainActivity = (MainActivity) getActivity();
 		loggedUser = mainActivity.getLoggedUser();
+		context = mainActivity.getApplicationContext();
 		
 		takeDataFromView(viewEditSettings);
 		clickSave();
@@ -55,11 +58,21 @@ public class EditSettingsFragment extends Fragment{
 		button_save.setOnClickListener(new OnClickListener () {
 			@Override
 			public void onClick(View v) {
-				
 				saveUserEdition();
-				UserDAO userDao = UserDAO.getInstance(mainActivity.getApplicationContext());
-				userDao.edit(loggedUser);
-				mainActivity.changeFragment(3);
+				
+				int validationResult;
+				validationResult = User.validationResult(loggedUser, context);
+				
+				if (validationResult > 0 && validationResult < 7) {
+					ErrorHandlingUtil.displayEditError(editText_editEmail, editText_editName,
+													   editText_newPassword, editText_editAge,
+													   validationResult, context);
+				}
+				else {
+					UserDAO userDao = UserDAO.getInstance(mainActivity.getApplicationContext());
+					userDao.edit(loggedUser);
+					mainActivity.changeFragment(3);
+				}
 			}
 		});
 	}
@@ -104,7 +117,7 @@ public class EditSettingsFragment extends Fragment{
 			loggedUser.setPassword(this.editText_newPassword.getText().toString());
 		else if(!editText_oldPassword.getText().toString().equals("") && 
 					!loggedUser.getPassword().equals(editText_oldPassword)){
-			ErrorHandlingUtil.genericError(editText_oldPassword, "Senha antiga não correspodente.", getActivity());
+			ErrorHandlingUtil.genericError(editText_oldPassword, "Senha antiga não correspondente.", context);
 		}
 	}
 }

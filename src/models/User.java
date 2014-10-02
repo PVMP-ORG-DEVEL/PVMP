@@ -179,29 +179,29 @@ public class User implements Serializable {
 		return false;
 	}
 	
-	public static int validationResult (User user, Context context) {
-		if (!user.validateExistingUser(user.getUsername(), context)) 
+	public static int validationResult (User user, Context context) {		
+		if (!user.validateNameFormat(user.getName()))
 			return 1;
 		
-		if(!user.validateExistingEmail(user.getEmail(), context)) 
+		if (!user.validateNameSize(user.getName()))
 			return 2;
 		
-		if (!user.validateNameFormat(user.getName()))
+		if (!user.validatePassword(user.getPassword())) 
 			return 3;
 		
-		if (!user.validateNameSize(user.getName()))
+		if (!user.validateEmailFormat(user.getEmail()))
 			return 4;
 		
-		if (!user.validatePassword(user.getPassword())) 
+		if (!user.validateEmailSize(user.getEmail()))
 			return 5;
 		
-		if (!user.validateEmailFormat(user.getEmail()))
+		if (!user.validateAge(user.getAge()))
 			return 6;
 		
-		if (!user.validateEmailSize(user.getEmail()))
+		if(!user.validateExistingEmail(user.getEmail(), context)) 
 			return 7;
 		
-		if (!user.validateAge(user.getAge()))
+		if (!user.validateExistingUser(user.getUsername(), context))
 			return 8;
 		
 		if (!user.validateUsernameSize(user.getUsername()))
