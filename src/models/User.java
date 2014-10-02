@@ -104,8 +104,7 @@ public class User implements Serializable {
 		
 		if (user.getUsername() != null && user.getPassword().equals(password)) 
 			return user;
-		else
-			return null;
+		return null;
 	}
 	
 	public boolean validateExistingEmail (String email, Context context){
@@ -115,8 +114,7 @@ public class User implements Serializable {
 		
 		if (user.getEmail() == null)
 			return true;
-		else 
-			return false;
+		return false;
 	}
 	
 	public boolean validateExistingUser (String username, Context context){
@@ -126,43 +124,59 @@ public class User implements Serializable {
 		
 		if (user.getUsername() == null)
 			return true;
-		else 
-			return false;
+		return false;
 	}
 	
-	public boolean validatePassword(String password){
+	public boolean validatePassword (String password) {
 		if(password != null && password.length()>=6 && password.length()<=15)
 			return true;
-		else
-			return false;
+		return false;
 	}
 	
-	public boolean validateName(String name){
-		if(name != null && name.length()<=50 && name.matches("[a-zA-Z]+"))
+	public boolean validateNameFormat (String name) {
+		if(name.matches("[a-zA-Z ]+"))
 			return true;
-		else
-			return false;
+		return false;
 	}
 	
-	public boolean validateEmail(String email){
-		if(email != null && email.length()<=40 && email.length() >= 10)
+	public boolean validateNameSize (String name) {
+		if(name.length() > 2 && name.length() < 51)
 			return true;
-		else 
-			return false;
+		return false;
 	}
 	
-	public boolean validateAge(int age){
+	public boolean validateEmailFormat (String email) {
+		if(email != null && (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()))
+			return true;	
+		return false;
+	}
+	
+	public boolean validateEmailSize (String email) {
+		if (email.length() < 40)
+			return true;
+		return false;
+	}
+	
+	public boolean validateAge (int age) {
 		if(age > 10 && age < 99)
 			return true;
-		else
-			return false;
+		return false;
 	}
 	
-	public boolean validateUsername (String username) {
+	public boolean validateUsernameSize (String username) {
 		if (username.length() >= 3 && username.length() <= 15)
 			return true;
-		else
-			return false;
+		return false;
+	}
+	
+	public boolean validateUsernameFirstLetter (String username) {
+		return (Character.isLetter(username.charAt(0)));
+	}
+	
+	public boolean validateUsernameFormat (String username) {
+		if (username.matches("[a-zA-Z0-9]+"))
+			return true;
+		return false;
 	}
 	
 	public static int validationResult (User user, Context context) {
@@ -172,20 +186,32 @@ public class User implements Serializable {
 		if(!user.validateExistingEmail(user.getEmail(), context)) 
 			return 2;
 		
-		if (!user.validatePassword(user.getPassword())) 
+		if (!user.validateNameFormat(user.getName()))
 			return 3;
 		
-		if (!user.validateName(user.getName()))
+		if (!user.validateNameSize(user.getName()))
 			return 4;
 		
-		if (!user.validateEmail(user.getEmail()))
+		if (!user.validatePassword(user.getPassword())) 
 			return 5;
 		
-		if (!user.validateAge(user.getAge()))
+		if (!user.validateEmailFormat(user.getEmail()))
 			return 6;
 		
-		if (!user.validateUsername(user.getUsername()))
+		if (!user.validateEmailSize(user.getEmail()))
 			return 7;
+		
+		if (!user.validateAge(user.getAge()))
+			return 8;
+		
+		if (!user.validateUsernameSize(user.getUsername()))
+			return 9;
+		
+		if (!user.validateUsernameFirstLetter(user.getUsername()))
+			return 10;
+		
+		if(!user.validateUsernameFormat(user.getUsername()))
+			return 11;
 		
 		return 0;
 	}
