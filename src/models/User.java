@@ -134,8 +134,15 @@ public class User implements Serializable {
 	}
 	
 	public static boolean validateNameFormat (String name) {
-		if(name.matches("[a-zA-Z ]+"))
+		if(name.matches("[a-zA-Z ]+")) {
+			for (int i = 0; i < name.length(); i++) {
+				if (name.charAt(i) == ' ' && i != (name.length() - 1)) {
+					if (name.charAt(i+1) == ' ')
+						return false;
+				}
+			}
 			return true;
+		}
 		return false;
 	}
 	
