@@ -69,6 +69,7 @@ public class UserRegisterActivity extends Activity {
 				i.setClass(this, MainActivity.class);
 				i.putExtra("User", registeredUser);
 				startActivity(i);
+				this.finish();
 				break;
 			default:
 				ErrorHandlingUtil.displayRegisterError(editText_userName, editText_userEmail,
