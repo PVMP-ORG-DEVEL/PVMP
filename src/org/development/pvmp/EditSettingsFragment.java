@@ -60,15 +60,18 @@ public class EditSettingsFragment extends Fragment{
 			public void onClick(View v) {
 				saveUserEdition();
 				
-				int validationResult;
-				validationResult = User.validationResult(loggedUser, context);
+				boolean passVerification = passwordsVerification();
+				int validationResult = User.validationResult(loggedUser, context);
 				
-				if (validationResult > 0 && validationResult < 7) {
+				if (validationResult > 0 && validationResult < 6) {
 					ErrorHandlingUtil.displayEditError(editText_editEmail, editText_editName,
 													   editText_newPassword, editText_editAge,
 													   validationResult, context);
 				}
-				else {
+				else if (passVerification) {
+					if (!editText_newPassword.getText().toString().equals(""))
+						loggedUser.setPassword(editText_newPassword.getText().toString());
+					
 					UserDAO userDao = UserDAO.getInstance(mainActivity.getApplicationContext());
 					userDao.edit(loggedUser);
 					mainActivity.changeFragment(3);
@@ -113,14 +116,32 @@ public class EditSettingsFragment extends Fragment{
 		}
 		
 		loggedUser.setEducation(education);
+	}
+	
+	public boolean passwordsVerification () {
+		String oldP = editText_oldPassword.getText().toString();
+		String newP = editText_newPassword.getText().toString();
 		
-		if (!editText_oldPassword.getText().toString().equals("") &&
-				!editText_newPassword.getText().toString().equals("")&&
-				loggedUser.getPassword().equals(editText_oldPassword))
-			loggedUser.setPassword(this.editText_newPassword.getText().toString());
-		else if(!editText_oldPassword.getText().toString().equals("") && 
-					!loggedUser.getPassword().equals(editText_oldPassword)){
-			ErrorHandlingUtil.genericError(editText_oldPassword, "Senha antiga não correspondente.", context);
+		if (!oldP.equals("")) {
+			if (oldP.equals(loggedUser.getPassword())) {
+				if(User.validatePassword(newP))
+					return true;
+				else {
+					ErrorHandlingUtil.genericError(editText_newPassword, "Sua senha deve ter de 6 a 15 caracteres.", context);
+					return false;
+				}	
+			}
+			else {
+				ErrorHandlingUtil.genericError(editText_oldPassword, "Senha antiga não correspondente.", context);
+				return false;
+			}
 		}
+		else {
+			if(!newP.equals("")) {
+				ErrorHandlingUtil.genericError(editText_oldPassword, "Senha antiga não correspondente.", context);
+				return false;
+			}		
+		}
+		return true;
 	}
 }

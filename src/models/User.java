@@ -107,7 +107,7 @@ public class User implements Serializable {
 		return null;
 	}
 	
-	public boolean validateExistingEmail (String email, Context context){
+	public static boolean validateExistingEmail (String email, Context context){
 		User user = new User();
 		userDao = UserDAO.getInstance(context);
 		user = userDao.selectByEmail(email);
@@ -117,7 +117,7 @@ public class User implements Serializable {
 		return false;
 	}
 	
-	public boolean validateExistingUser (String username, Context context){
+	public static boolean validateExistingUser (String username, Context context){
 		User user = new User();
 		userDao = UserDAO.getInstance(context);
 		user = userDao.selectByUsername(username);
@@ -127,90 +127,90 @@ public class User implements Serializable {
 		return false;
 	}
 	
-	public boolean validatePassword (String password) {
+	public static boolean validatePassword (String password) {
 		if(password != null && password.length()>=6 && password.length()<=15)
 			return true;
 		return false;
 	}
 	
-	public boolean validateNameFormat (String name) {
+	public static boolean validateNameFormat (String name) {
 		if(name.matches("[a-zA-Z ]+"))
 			return true;
 		return false;
 	}
 	
-	public boolean validateNameSize (String name) {
+	public static boolean validateNameSize (String name) {
 		if(name.length() > 2 && name.length() < 51)
 			return true;
 		return false;
 	}
 	
-	public boolean validateEmailFormat (String email) {
+	public static boolean validateEmailFormat (String email) {
 		if(email != null && (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()))
 			return true;	
 		return false;
 	}
 	
-	public boolean validateEmailSize (String email) {
+	public static boolean validateEmailSize (String email) {
 		if (email.length() < 40)
 			return true;
 		return false;
 	}
 	
-	public boolean validateAge (int age) {
+	public static boolean validateAge (int age) {
 		if(age >= 10 && age <= 99)
 			return true;
 		return false;
 	}
 	
-	public boolean validateUsernameSize (String username) {
+	public static boolean validateUsernameSize (String username) {
 		if (username.length() >= 3 && username.length() <= 15)
 			return true;
 		return false;
 	}
 	
-	public boolean validateUsernameFirstLetter (String username) {
+	public static boolean validateUsernameFirstLetter (String username) {
 		return (Character.isLetter(username.charAt(0)));
 	}
 	
-	public boolean validateUsernameFormat (String username) {
+	public static boolean validateUsernameFormat (String username) {
 		if (username.matches("[a-zA-Z0-9]+"))
 			return true;
 		return false;
 	}
 	
 	public static int validationResult (User user, Context context) {		
-		if (!user.validateNameFormat(user.getName()))
+		if (!User.validateNameFormat(user.getName()))
 			return 1;
 		
-		if (!user.validateNameSize(user.getName()))
+		if (!User.validateNameSize(user.getName()))
 			return 2;
 		
-		if (!user.validateEmailFormat(user.getEmail()))
+		if (!User.validateEmailFormat(user.getEmail()))
 			return 3;
 		
-		if (!user.validateEmailSize(user.getEmail()))
+		if (!User.validateEmailSize(user.getEmail()))
 			return 4;
 		
-		if (!user.validateAge(user.getAge()))
+		if (!User.validateAge(user.getAge()))
 			return 5;
 		
-		if (!user.validatePassword(user.getPassword()))
+		if (!User.validatePassword(user.getPassword()))
 			return 6;
 		
-		if(!user.validateExistingEmail(user.getEmail(), context)) 
+		if(!User.validateExistingEmail(user.getEmail(), context)) 
 			return 7;
 		
-		if (!user.validateExistingUser(user.getUsername(), context))
+		if (!User.validateExistingUser(user.getUsername(), context))
 			return 8;
 		
-		if (!user.validateUsernameSize(user.getUsername()))
+		if (!User.validateUsernameSize(user.getUsername()))
 			return 9;
 		
-		if (!user.validateUsernameFirstLetter(user.getUsername()))
+		if (!User.validateUsernameFirstLetter(user.getUsername()))
 			return 10;
 		
-		if(!user.validateUsernameFormat(user.getUsername()))
+		if(!User.validateUsernameFormat(user.getUsername()))
 			return 11;
 		
 		return 0;
