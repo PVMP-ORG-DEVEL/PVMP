@@ -20,7 +20,7 @@ public class AccountSettingsFragment extends Fragment {
 	private TextView textView_showSex;
 	private TextView textView_showUsername;
 	private Button button_edit;
-	private MainActivity mainActivity;
+	private HomeActivity mainActivity;
 	private User loggedUser;
 	
 	@Override
@@ -31,7 +31,7 @@ public class AccountSettingsFragment extends Fragment {
 		
 		View viewAccountSettings = inflater.inflate(R.layout.account_settings_fragment, container, false);
 		
-		mainActivity = (MainActivity) getActivity();
+		mainActivity = (HomeActivity) getActivity();
 		loggedUser = mainActivity.getLoggedUser();
 	
 		takeDataFromView (viewAccountSettings);

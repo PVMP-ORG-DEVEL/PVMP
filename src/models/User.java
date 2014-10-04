@@ -17,6 +17,7 @@ public class User implements Serializable {
 	private String education;
 	private String sex;
 	private static UserDAO userDao;
+	private String defaultUser;
 	
 	public User () {
 		this.name = null;
@@ -26,10 +27,11 @@ public class User implements Serializable {
 		this.age = 0;
 		this.education = null;
 		this.sex = null;
+		this.defaultUser = null;
 	}
 	
 	public User(String name, String username, String password, String email
-			, int age, String education, String sex){
+			, int age, String education, String sex, String defaultUser){
 		this.name = name;
 		this.username = username;
 		this.password = password;
@@ -37,6 +39,7 @@ public class User implements Serializable {
 		this.age = age;
 		this.education = education;
 		this.sex = sex;
+		this.defaultUser = defaultUser;
     }
 	
 	public String getName() {
@@ -221,5 +224,13 @@ public class User implements Serializable {
 			return 11;
 		
 		return 0;
+	}
+
+	public String getDefaultUser() {
+		return defaultUser;
+	}
+
+	public void setDefaultUser(String defaultUser) {
+		this.defaultUser = defaultUser;
 	}
 }

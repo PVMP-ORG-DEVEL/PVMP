@@ -25,7 +25,7 @@ public class UserDAO {
 	public static final String COLUMN_AGE = "AGE";
 	public static final String COLUMN_EDUCATION = "EDUCATION";
 	public static final String COLUMN_SEX = "SEX";
-	
+	public static final String COLUMN_DEFAULT = "DEFAULTUSER";
 	public static final String SCRIPT_TABLE_CREATION_USER = 
 			"CREATE TABLE " + TABLE_NAME + "(" 
 		    + COLUMN_USERNAME + " VARCHAR(15) NOT NULL PRIMARY KEY,"
@@ -34,7 +34,8 @@ public class UserDAO {
 			+ COLUMN_EMAIL + " VARCHAR(40) NOT NULL,"
 			+ COLUMN_AGE + " INTEGER NOT NULL,"
 			+ COLUMN_EDUCATION + " VARCHAR(11) NOT NULL,"
-			+ COLUMN_SEX + " VARCHAR(9) NOT NULL"
+			+ COLUMN_SEX + " VARCHAR(9) NOT NULL,"
+			+ COLUMN_DEFAULT + " VARCHAR(1) NOT NULL"
 			+ ");";
 	
 	public static final String SCRIPT_TABLE_DELETION = 
@@ -73,6 +74,12 @@ public class UserDAO {
         
         return user;   
     }
+	
+	public User selectByDefault(String defaultUser){
+		String queryUser = "SELECT * FROM " + TABLE_NAME + " where " + COLUMN_DEFAULT + " = ?";
+		User user = recoverByQuery(queryUser, defaultUser);
+		return user;
+	}
 	
 	public User recoverByQuery (String query, String valor) {
 		Cursor cursor = database.rawQuery(query, new String [] {valor});
@@ -119,6 +126,7 @@ public class UserDAO {
         user.setAge(contentValues.getAsInteger(COLUMN_AGE));
         user.setEducation(contentValues.getAsString(COLUMN_EDUCATION));
         user.setSex(contentValues.getAsString(COLUMN_SEX));
+        user.setDefaultUser(contentValues.getAsString(COLUMN_DEFAULT));
         
         return user;
     }
@@ -132,6 +140,7 @@ public class UserDAO {
 		values.put(COLUMN_AGE, user.getAge());
 		values.put(COLUMN_EDUCATION, user.getEducation());
 		values.put(COLUMN_SEX, user.getSex());
+		values.put(COLUMN_DEFAULT, user.getDefaultUser());
 		return values;
 	}
 }

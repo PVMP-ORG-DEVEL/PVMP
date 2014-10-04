@@ -60,7 +60,7 @@ public class LoginActivity extends ActionBarActivity {
 		
 		if(userToBeLogged != null) {
 			Intent i = new Intent();
-			i.setClass(this, MainActivity.class);
+			i.setClass(this, HomeActivity.class);
 			i.putExtra ("User", userToBeLogged);
 			startActivity(i);
 			}
@@ -90,7 +90,7 @@ public class LoginActivity extends ActionBarActivity {
     public void clickGuest (View view) {
     	userToBeLogged = null;
     	Intent i = new Intent();
-    	i.setClass(this, MainActivity.class);
+    	i.setClass(this, HomeActivity.class);
     	i.putExtra("User", userToBeLogged);
     	startActivity(i);
     }

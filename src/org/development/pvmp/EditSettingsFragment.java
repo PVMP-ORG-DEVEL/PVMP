@@ -22,7 +22,7 @@ public class EditSettingsFragment extends Fragment{
 	private EditText editText_oldPassword;
 	private EditText editText_newPassword;
 	private Button button_save;
-	private MainActivity mainActivity;
+	private HomeActivity mainActivity;
 	private User loggedUser;
 	private Context context;
 	
@@ -33,7 +33,7 @@ public class EditSettingsFragment extends Fragment{
 		
 		View viewEditSettings = inflater.inflate(R.layout.edit_settings_fragment, container, false);
 		
-		mainActivity = (MainActivity) getActivity();
+		mainActivity = (HomeActivity) getActivity();
 		loggedUser = mainActivity.getLoggedUser();
 		context = mainActivity.getApplicationContext();
 		

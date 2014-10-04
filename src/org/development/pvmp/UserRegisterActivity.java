@@ -60,13 +60,14 @@ public class UserRegisterActivity extends Activity {
 		validationResult = User.validationResult(registeredUser, context);
 		
 		switch(validationResult) {
-			case 0:					
+			case 0:		
+				registeredUser.setDefaultUser("S");
 				userDao.save(registeredUser);
 				
 				ErrorHandlingUtil.showToast("Cadastro realizado com sucesso!", context);
 				
 				Intent i = new Intent();
-				i.setClass(this, MainActivity.class);
+				i.setClass(this, HomeActivity.class);
 				i.putExtra("User", registeredUser);
 				startActivity(i);
 				this.finish();
