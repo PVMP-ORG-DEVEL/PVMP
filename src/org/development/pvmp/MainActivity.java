@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		user = new User();
 		userDao = UserDAO.getInstance(getApplicationContext());
+		user = userDao.selectByDefault("S");
 		
 		
 		if (user.getDefaultUser() == null){
