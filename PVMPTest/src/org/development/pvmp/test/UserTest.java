@@ -34,8 +34,9 @@ public class UserTest extends AndroidTestCase {
 		assertEquals(User.validatePassword("12345"), false);
 		assertEquals(User.validatePassword("123456"), true);
 		assertEquals(User.validatePassword("123456a"),true);
-		assertEquals(User.validatePassword("qw123456aklsdc1"),true);
+		assertEquals(User.validatePassword("qw123456afssdc1"),true);
 		assertEquals(User.validatePassword("12345qwert12345j"),false);
+		assertEquals(User.validatePassword("12345qwert123*&5j"),false);
 	}
 	
 	public void testValidateNameSize () {

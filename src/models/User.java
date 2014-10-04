@@ -132,7 +132,10 @@ public class User implements Serializable {
 	
 	public static boolean validatePassword (String password) {
 		if(password != null && password.length()>=6 && password.length()<=15)
-			return true;
+			if(password.matches("[a-zA-Z0-9]+"))
+				return true;
+			else
+				return false;
 		return false;
 	}
 	
