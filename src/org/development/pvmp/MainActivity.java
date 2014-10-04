@@ -19,19 +19,28 @@ public class MainActivity extends Activity {
 		userDao = UserDAO.getInstance(getApplicationContext());
 		user = userDao.selectByDefault("S");
 		
+		checkFirstScreen(user);
+		
+		return;
+	}
+	
+	public void checkFirstScreen (User user) {
+		Intent i = new Intent();
 		
 		if (user.getDefaultUser() == null){
-			Intent i = new Intent();
 			i.setClass(this, LoginActivity.class);
-			startActivity(i);
-			this.finish();
 		}
 		else {
-			Intent i = new Intent();
 			i.setClass(this, HomeActivity.class);
 			i.putExtra ("User", user);
-			startActivity(i);
-			this.finish();
 		}
+		startActivity(i);
+		this.finish();
+		
+		return;
+	}
+
+	public User getUser() {
+		return user;
 	}
 }
