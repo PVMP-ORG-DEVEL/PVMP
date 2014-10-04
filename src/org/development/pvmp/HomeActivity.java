@@ -31,7 +31,7 @@ public class HomeActivity extends ActionBarActivity implements OnItemClickListen
 	private FragmentManager fragmentManager;
 	private static User loggedUser;
 	public Context context;
-	
+	UserDAO userDao;
 
     public User getLoggedUser() {
 		return loggedUser;
@@ -41,6 +41,7 @@ public class HomeActivity extends ActionBarActivity implements OnItemClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        userDao = UserDAO.getInstance(getApplicationContext());
         
         this.drawerLayout_main = (DrawerLayout)findViewById(R.id.drawerLayout_main);
         this.drawerList_main = (ListView)findViewById(R.id.drawerList_main);
@@ -48,6 +49,7 @@ public class HomeActivity extends ActionBarActivity implements OnItemClickListen
         loggedUser = (User) getIntent().getSerializableExtra("User");
         context = getApplicationContext();
 		loggedUser.setDefaultUser("S");
+		userDao.edit(loggedUser);
         
         this.drawerList_main.setOnItemClickListener(this);
     }
@@ -72,6 +74,7 @@ public class HomeActivity extends ActionBarActivity implements OnItemClickListen
 	public void onItemClick(AdapterView<?> parent, View view, int position,	long id) {
 		if (position == 4) {
 			loggedUser.setDefaultUser("N");
+			userDao.edit(loggedUser);
 			leaveActivity();
 		}
 		else {
