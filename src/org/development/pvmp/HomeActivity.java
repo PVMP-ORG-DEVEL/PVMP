@@ -135,5 +135,6 @@ public class HomeActivity extends ActionBarActivity implements OnItemClickListen
 		i.setClass(this, LoginActivity.class);
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(i);
+		this.finish();
 	}
 }
