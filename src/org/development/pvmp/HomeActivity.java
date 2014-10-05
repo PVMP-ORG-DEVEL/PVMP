@@ -38,23 +38,27 @@ public class HomeActivity extends ActionBarActivity implements OnItemClickListen
 	}
 
 	@Override
-    protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         userDao = UserDAO.getInstance(getApplicationContext());
         
-        this.drawerLayout_main = (DrawerLayout)findViewById(R.id.drawerLayout_main);
-        this.drawerList_main = (ListView)findViewById(R.id.drawerList_main);
-        this.fragmentManager = getSupportFragmentManager();
+        takeDataFromView();
         loggedUser = (User) getIntent().getSerializableExtra("User");
         context = getApplicationContext();
-		loggedUser.setDefaultUser("S");
-		userDao.edit(loggedUser);
-        
-        this.drawerList_main.setOnItemClickListener(this);
+        if (loggedUser != null) {
+        	loggedUser.setDefaultUser("S");
+        	userDao.edit(loggedUser);
+        }
     }
-
-
+	
+	public void takeDataFromView () {
+		this.drawerLayout_main = (DrawerLayout)findViewById(R.id.drawerLayout_main);
+        this.drawerList_main = (ListView)findViewById(R.id.drawerList_main);
+        this.fragmentManager = getSupportFragmentManager();
+        this.drawerList_main.setOnItemClickListener(this);
+	}
+	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -73,8 +77,10 @@ public class HomeActivity extends ActionBarActivity implements OnItemClickListen
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,	long id) {
 		if (position == 4) {
-			loggedUser.setDefaultUser("N");
-			userDao.edit(loggedUser);
+			if (loggedUser != null) {
+				loggedUser.setDefaultUser("N");
+				userDao.edit(loggedUser);
+			}
 			leaveActivity();
 		}
 		else {
