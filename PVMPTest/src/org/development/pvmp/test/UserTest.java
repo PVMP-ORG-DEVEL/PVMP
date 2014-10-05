@@ -75,4 +75,19 @@ public class UserTest extends AndroidTestCase {
 		assertEquals(User.validateUsernameFormat("aoo1234d"),true);
 		
 	}
+	
+	public void testValidateEmailFormat() {
+		assertEquals(User.validateEmailFormat("jbs@email.com"),true);
+		assertEquals(User.validateEmailFormat("asdd#kkss"),false);
+		assertEquals(User.validateEmailFormat(" "),false);
+		assertEquals(User.validateEmailFormat("{}sss@email.com"),false);
+		assertEquals(User.validateEmailFormat("12krk@email.com"),true);
+		
+	}
+	
+	public void testValidateEmailSize() {
+		assertEquals(User.validateEmailSize("fjfk@email.com"),true);
+		assertEquals(User.validateEmailSize("cmfjfmfj1234567890cmdkvmsovkfv@email.com"),false);
+		
+	}
 }
