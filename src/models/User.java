@@ -130,12 +130,15 @@ public class User implements Serializable {
 		return false;
 	}
 	
-	public static boolean validatePassword (String password) {
+	public static boolean validatePasswordSize (String password) {
 		if(password != null && password.length()>=6 && password.length()<=15)
-			if(password.matches("[a-zA-Z0-9]+"))
-				return true;
-			else
-				return false;
+			return true;
+		return false;
+	}
+	
+	public static boolean validatePasswordFormat (String password) {
+		if(password.matches("[a-zA-Z0-9]+"))
+			return true;
 		return false;
 	}
 	
@@ -208,23 +211,26 @@ public class User implements Serializable {
 		if (!User.validateAge(user.getAge()))
 			return 5;
 		
-		if (!User.validatePassword(user.getPassword()))
+		if (!User.validatePasswordSize(user.getPassword()))
 			return 6;
 		
-		if(!User.validateExistingEmail(user.getEmail(), context)) 
+		if (!User.validatePasswordFormat(user.getPassword()))
 			return 7;
 		
-		if (!User.validateExistingUser(user.getUsername(), context))
+		if(!User.validateExistingEmail(user.getEmail(), context)) 
 			return 8;
 		
-		if (!User.validateUsernameSize(user.getUsername()))
+		if (!User.validateExistingUser(user.getUsername(), context))
 			return 9;
 		
-		if (!User.validateUsernameFirstLetter(user.getUsername()))
+		if (!User.validateUsernameSize(user.getUsername()))
 			return 10;
 		
-		if(!User.validateUsernameFormat(user.getUsername()))
+		if (!User.validateUsernameFirstLetter(user.getUsername()))
 			return 11;
+		
+		if(!User.validateUsernameFormat(user.getUsername()))
+			return 12;
 		
 		return 0;
 	}

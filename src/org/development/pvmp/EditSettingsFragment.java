@@ -69,8 +69,10 @@ public class EditSettingsFragment extends Fragment{
 													   validationResult, context);
 				}
 				else if (passVerification) {
-					if (!editText_newPassword.getText().toString().equals(""))
+					if (!editText_newPassword.getText().toString().equals("")) {
 						loggedUser.setPassword(editText_newPassword.getText().toString());
+						ErrorHandlingUtil.showToast("Senha alterada com sucesso.", context);
+					}
 					
 					UserDAO userDao = UserDAO.getInstance(mainActivity.getApplicationContext());
 					userDao.edit(loggedUser);
@@ -124,12 +126,19 @@ public class EditSettingsFragment extends Fragment{
 		
 		if (!oldP.equals("")) {
 			if (oldP.equals(loggedUser.getPassword())) {
-				if(User.validatePassword(newP))
-					return true;
+				if(User.validatePasswordSize(newP)) {
+					if (User.validatePasswordFormat(newP))
+						return true;
+					else {
+						ErrorHandlingUtil.genericError(editText_newPassword, "Sua senha deve ser formada apenas por letras e números.", context);
+						return false;
+					}
+					
+				}
 				else {
 					ErrorHandlingUtil.genericError(editText_newPassword, "Sua senha deve ter de 6 a 15 caracteres.", context);
 					return false;
-				}	
+				}
 			}
 			else {
 				ErrorHandlingUtil.genericError(editText_oldPassword, "Senha antiga não correspondente.", context);

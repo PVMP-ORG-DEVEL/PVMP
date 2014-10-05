@@ -49,6 +49,9 @@ public class ErrorHandlingUtil {
 			case 6:
 				ErrorHandlingUtil.genericError(et3, "Sua senha deve ter de 6 a 15 caracteres.", context);
 				break;
+			case 7:
+				ErrorHandlingUtil.genericError(et3, "Sua senha pode ser formada apenas por letras e números.", context);
+				break;
 		}
 	}
 	
