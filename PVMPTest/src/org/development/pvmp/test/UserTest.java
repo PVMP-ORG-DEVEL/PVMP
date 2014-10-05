@@ -54,4 +54,25 @@ public class UserTest extends AndroidTestCase {
 		message +='a';
 		assertEquals(User.validateNameSize(message), false);
 	}
+	
+	public void testValidateUsernameSize() {
+		assertEquals(User.validateUsernameSize("aaa"),true);
+		assertEquals(User.validateUsernameSize("a1"),false);
+		assertEquals(User.validateUsernameSize("123456789abcdef"),true);
+		assertEquals(User.validateUsernameSize("abcdefg123456789"),false);
+		assertEquals(User.validateUsernameSize("aaa12"),true);
+	}
+	
+	public void testValidateUsernameFirstLetter() {
+		assertEquals(User.validateUsernameFirstLetter("a123"),true);
+		assertEquals(User.validateUsernameFirstLetter("2a1a"),false);
+	}
+	
+	public void testValidateUsernameFormat() {
+		assertEquals(User.validateUsernameFormat("Ajdj22"),true);
+		assertEquals(User.validateUsernameFormat("$aja12"),false);
+		assertEquals(User.validateUsernameFormat("0*"),false);
+		assertEquals(User.validateUsernameFormat("aoo1234d"),true);
+		
+	}
 }
