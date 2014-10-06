@@ -2,9 +2,9 @@ package org.development.pvmp;
 
 import dao.UserDAO;
 import models.User;
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.view.View.OnClickListener;
 
-public class EditSettingsFragment extends Fragment{
+public class EditSettingsFragment extends Fragment {
 
 	private EditText editText_editName;
 	private EditText editText_editEmail;

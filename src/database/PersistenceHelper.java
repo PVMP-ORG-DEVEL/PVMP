@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class PersistenceHelper extends SQLiteOpenHelper{
 
-	public static final String DATABASE_NAME = "PVMP_DATABASE";
-	public static final int VERSION = 2;
+	public static final String DATABASE_NAME = "PVMP_DATABASE.db";
+	public static final int VERSION = 1;
 	
 	private static PersistenceHelper instance = null;
 	

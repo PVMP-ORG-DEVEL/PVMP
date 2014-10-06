@@ -10,9 +10,8 @@ package org.development.pvmp;
 import dao.UserDAO;
 import models.User;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,11 +23,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 
-public class HomeActivity extends ActionBarActivity implements OnItemClickListener {
+public class HomeActivity extends Activity implements OnItemClickListener {
 	
 	private DrawerLayout drawerLayout_main;
 	private ListView drawerList_main;
-	private FragmentManager fragmentManager;
+	private android.app.FragmentManager fragmentManager;
 	private static User loggedUser;
 	public Context context;
 	UserDAO userDao;
@@ -55,7 +54,7 @@ public class HomeActivity extends ActionBarActivity implements OnItemClickListen
 	public void takeDataFromView () {
 		this.drawerLayout_main = (DrawerLayout)findViewById(R.id.drawerLayout_main);
         this.drawerList_main = (ListView)findViewById(R.id.drawerList_main);
-        this.fragmentManager = getSupportFragmentManager();
+        this.fragmentManager = getFragmentManager();
         this.drawerList_main.setOnItemClickListener(this);
 	}
 	
@@ -90,14 +89,14 @@ public class HomeActivity extends ActionBarActivity implements OnItemClickListen
 	}
 	
 	private void changeTitle (String title) {
-		getSupportActionBar().setTitle(title);
+		getActionBar().setTitle(title);
 	}
 	
 	public void changeFragment(int position) {
 		String[] menuOptions = getResources().getStringArray(R.array.navigationOptions_main);
-		android.support.v4.app.FragmentTransaction fragmentTransaction;
+		FragmentTransaction fragmentTransaction;
 		fragmentTransaction = this.fragmentManager.beginTransaction();
-		Fragment newFragment;
+		android.app.Fragment newFragment;
 		
 		switch(position) {
 			case 3:
@@ -130,7 +129,6 @@ public class HomeActivity extends ActionBarActivity implements OnItemClickListen
 	}
 	
 	private void leaveActivity () {
-
 		Intent i = new Intent();
 		i.setClass(this, LoginActivity.class);
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

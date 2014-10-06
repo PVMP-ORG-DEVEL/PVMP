@@ -2,7 +2,7 @@ package org.development.pvmp;
 
 
 import models.User;
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends Activity {
 
 	private User userToBeLogged;
 	private EditText editText_username;
