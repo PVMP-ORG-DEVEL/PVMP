@@ -11,6 +11,8 @@ import dao.UserDAO;
 import models.User;
 import android.support.v4.widget.DrawerLayout;
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +29,7 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 	
 	private DrawerLayout drawerLayout_main;
 	private ListView drawerList_main;
-	private android.app.FragmentManager fragmentManager;
+	private FragmentManager fragmentManager;
 	private static User loggedUser;
 	public Context context;
 	UserDAO userDao;
@@ -96,7 +98,7 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 		String[] menuOptions = getResources().getStringArray(R.array.navigationOptions_main);
 		FragmentTransaction fragmentTransaction;
 		fragmentTransaction = this.fragmentManager.beginTransaction();
-		android.app.Fragment newFragment;
+		Fragment newFragment;
 		
 		switch(position) {
 			case 3:
