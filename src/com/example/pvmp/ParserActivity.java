@@ -6,6 +6,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlPullParserException;
 
+import com.github.mikephil.charting.charts.PieChart;
+
 import parser.DatabaseInterface;
 import parser.ParserController;
 import parser.helpers.ParserHelper;
@@ -25,11 +27,16 @@ import android.widget.Toast;
 
 public class ParserActivity extends Activity {
 
+	private PieChart chart;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_parser);
-		StatisticsDatabase.returnNumVotes(getApplicationContext());
+		
+		chart = (PieChart) findViewById(R.id.chart);
+		
+		StatisticsController.createGraph(chart, getApplicationContext());
 	}
 
 	public void loadParser(View view){

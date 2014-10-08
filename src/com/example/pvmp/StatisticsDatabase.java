@@ -1,5 +1,8 @@
 package com.example.pvmp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import parser.DatabaseInterface;
 import android.content.Context;
 import android.database.Cursor;
@@ -10,12 +13,15 @@ public class StatisticsDatabase {
 	
 	private static final String NUMVOTE = "SELECT VOTO FROM VOTE WHERE CODSESSAO = '4976'";
 	
-		public static void returnNumVotes(Context context){
+		public static List<Integer> returnNumVotes(Context context){
+			List<Integer> voteList = new ArrayList<Integer>();
 			DatabaseInterface helper = new DatabaseInterface(context);
 			SQLiteDatabase db = helper.getWritableDatabase();
 			Cursor c = db.rawQuery(NUMVOTE, null);	
 			Integer sim = 0;
+			Integer nao = 0;
 			Integer count = 0;
+			Integer total = c.getCount();
 			c.moveToFirst();
 			while(count < c.getCount()){
 				Log.d("Espaço","Teste"+c.getString(0).length());
@@ -25,10 +31,16 @@ public class StatisticsDatabase {
 					Log.d("TESTE", "TESTE: "+newVote);
 					sim++;
 				}
+				else if(newVote.equals("Não"))
+					nao++;
 				count++;
 				c.moveToPosition(count);
 			}
-			Log.d("VOTOS SIM", "Num Votos: "+sim);
+			voteList.add(total);
+			voteList.add(sim);
+			voteList.add(nao);
+			
+			return voteList;
 		}
 		
 		private static String removeEmptyChar(String party){

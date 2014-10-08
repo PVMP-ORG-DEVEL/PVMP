@@ -54,7 +54,7 @@ public class ParserController {
 	private static final String LISTAR_PROPOSICAO = "http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ListarProposicoes?";
 	private static final String COMP_LISTAR_URL = "&datApresentacaoIni=&datApresentacaoFim=&parteNomeAutor=&idTipoAutor=&siglaPartidoAutor=&siglaUFAutor=&generoAutor=&codEstado=&codOrgaoEstado=&emTramitacao=";
 	private static final String OBTER_VOTACAO_PROPOSICAO = "http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ObterVotacaoProposicao?";
-	private final static  String [] ANO_PROPOSICAO = {"2013","2014"};
+	private final static  String [] ANO_PROPOSICAO = {"2014"};
 	public  final static  String [] TIPO_PROPOSICAO = {"PL","PLP","PDC","MPV","PEC"};
 	private static final String PARTY_FILE = "party.txt";
 
