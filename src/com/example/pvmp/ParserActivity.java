@@ -29,7 +29,7 @@ public class ParserActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_parser);
-		//helper = new PropositionDAO(this);
+		StatisticsDatabase.returnNumVotes(getApplicationContext());
 	}
 
 	public void loadParser(View view){
