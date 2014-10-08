@@ -19,6 +19,6 @@ public class StatisticsFragment extends Fragment {
 		context = mainActivity.getApplicationContext();
 		
 		View viewStatistics = inflater.inflate(R.layout.activity_main, container, false);
-			return viewStatistics;
-}
+		return viewStatistics;
+	}
 }

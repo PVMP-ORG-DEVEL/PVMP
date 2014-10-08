@@ -67,4 +67,5 @@ public class StatisticsController {
 	    l.setPosition(LegendPosition.RIGHT_OF_CHART);
 	    l.setFormSize(13f);
 	}
+	
 }

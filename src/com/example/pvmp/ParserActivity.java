@@ -13,6 +13,9 @@ import parser.ParserController;
 import parser.helpers.ParserHelper;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,16 +30,30 @@ import android.widget.Toast;
 
 public class ParserActivity extends Activity {
 
+	private FragmentManager fragmentManager;
 	private PieChart chart;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Log.d("ANTES CONTENT", "antes CONTENT");
 		setContentView(R.layout.activity_parser);
 		
-		chart = (PieChart) findViewById(R.id.chart);
+		this.fragmentManager = getFragmentManager();
+		//chart = (PieChart) findViewById(R.id.chart);
 		
-		StatisticsController.createGraph(chart, getApplicationContext());
+		//StatisticsController.createGraph(chart, getApplicationContext());
+		Log.d("ANTES TRANSACT", "antes TRANSACT");
+		FragmentTransaction fragmentTransaction;
+		fragmentTransaction = this.fragmentManager.beginTransaction();
+		Fragment fragment = new PropositionsFragment();
+		Log.d("DEPOIS TRANSACT", "depois atranscat");
+		
+		fragmentTransaction.replace(R.id.linearLayout_parser, fragment);
+		fragmentTransaction.addToBackStack(null);
+		fragmentTransaction.commit();
+		Log.d("DEPOIS 2", "DEPOIS 2");
+		
 	}
 
 	public void loadParser(View view){
