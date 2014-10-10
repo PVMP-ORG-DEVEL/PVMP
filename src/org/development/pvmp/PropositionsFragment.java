@@ -1,7 +1,5 @@
 package org.development.pvmp;
 
-import java.util.ArrayList;
-
 import android.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -15,7 +13,6 @@ import android.widget.ListView;
 public class PropositionsFragment extends ListFragment {
 	private HomeActivity homeActivity;
 	private Context context;
-	private ListView listView_propositions;
 	private String[] propositions = new String[10];
 							
 	
@@ -41,6 +38,6 @@ public class PropositionsFragment extends ListFragment {
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		homeActivity.changeFragment(6);
+		homeActivity.changeFragment(7);
 	}
 }

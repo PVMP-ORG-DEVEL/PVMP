@@ -51,6 +51,7 @@ public class HomeActivity extends Activity implements OnItemClickListener {
         	loggedUser.setDefaultUser("S");
         	userDao.edit(loggedUser);
         }
+        this.changeFragment(6);
     }
 	
 	public void takeDataFromView () {
@@ -101,17 +102,20 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 		Fragment newFragment;
 		
 		switch(position) {
+			case 1:
+				newFragment = new PropositionsFragment();
+				break;
 			case 3:
 				newFragment = new AccountSettingsFragment();
 				break;
 			case 5:
 				newFragment = new EditSettingsFragment();
 				break;
-			case 6:
+			case 7:
 				newFragment = new PropositionFragment();
 				break;
 			default:
-				newFragment = new AccountSettingsFragment();
+				newFragment = new PropositionsFragment();
 		}
 		
 		if (loggedUser == null && position == 3) 

@@ -1,11 +1,9 @@
 package org.development.pvmp;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -26,7 +24,7 @@ public class GraphUtil {
         else if (color == 1)
         	ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
         else
-        	ds1.setColors(ColorTemplate.LIBERTY_COLORS);
+        	ds1.setColors(ColorTemplate.COLORFUL_COLORS);
         ds1.setSliceSpace(2f);
 	    
 	    Typeface tf = Typeface.defaultFromStyle(Typeface.BOLD_ITALIC);
