@@ -17,7 +17,7 @@ import com.github.mikephil.charting.utils.Legend.LegendPosition;
 
 public class GraphUtil {
 	public static void createGraph (ArrayList<Entry> entries, ArrayList<String> values, PieChart mChart,
-									String textCenter, Context context, int color) {
+									String centerText, Context context, int color) {
 	    mChart.setDescription("");
 
         PieDataSet ds1 = new PieDataSet(entries, "");
@@ -35,7 +35,7 @@ public class GraphUtil {
 	    mChart.setValueTypeface(tf);
 	    mChart.setUsePercentValues(true);
 	    mChart.setValueTextSize(15f);
-	    mChart.setCenterText("Resultado");
+	    mChart.setCenterText(centerText);
 	    mChart.setCenterTextTypeface(tfCenter);
 	    mChart.setCenterTextSize(22f);
 	     
@@ -49,6 +49,6 @@ public class GraphUtil {
         
 	    Legend l = mChart.getLegend();
 	    l.setPosition(LegendPosition.RIGHT_OF_CHART);
-	    l.setFormSize(13f);
+	    l.setFormSize(15f);
 	}
 }

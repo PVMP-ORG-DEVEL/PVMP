@@ -2,11 +2,6 @@ package org.development.pvmp;
 
 import java.util.ArrayList;
 
-import model.Proposition;
-
-import com.example.pvmp.homeActivity;
-import com.example.pvmp.StatisticsDatabase;
-
 import android.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;

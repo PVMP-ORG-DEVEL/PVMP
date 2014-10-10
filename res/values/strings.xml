@@ -28,6 +28,10 @@
     <string name="text_new_password">Nova Senha</string>
     <string name="text_save">Salvar</string>
     <string name="textView_errorLogin">Usuario e/ou Senha incorreto(s).</string>
+    <string name="text_id">Id:</string>
+    <string name="text_year">Ano:</string>
+    <string name="text_propositor">Propositor:</string>
+    <string name="text_menu_proposition">Resumo:</string>
     
      <string-array name="navigationOptions_main">
         <item>Proposições</item>

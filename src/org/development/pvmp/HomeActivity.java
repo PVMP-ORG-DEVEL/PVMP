@@ -107,6 +107,9 @@ public class HomeActivity extends Activity implements OnItemClickListener {
 			case 5:
 				newFragment = new EditSettingsFragment();
 				break;
+			case 6:
+				newFragment = new PropositionFragment();
+				break;
 			default:
 				newFragment = new AccountSettingsFragment();
 		}
