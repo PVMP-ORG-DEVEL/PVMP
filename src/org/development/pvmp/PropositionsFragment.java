@@ -46,6 +46,6 @@ public class PropositionsFragment extends ListFragment {
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		homeActivity.changeFragment(6)
+		homeActivity.changeFragment(6);
 	}
 }
