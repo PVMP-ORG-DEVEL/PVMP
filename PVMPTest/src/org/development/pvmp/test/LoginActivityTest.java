@@ -62,5 +62,40 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
 		assertNotNull (textView_errorLogin);
 	}
 	
+	public void testClickLogin() {
+		 editText_username.clearComposingText();
+		 
+		// tapping the username edit text through TouchUtils class
+		 TouchUtils.tapView(this, editText_username);
+		 
+		// sending input to username as cidadao.
+		 sendKeys("cidadao");
+		 
+		// Clicking on the button
+		 TouchUtils.clickView(this, editText_username);
+		 String username;
+		 
+		 try {
+			   // getting the input from the TextView reference
+			  username = editText_username.getText().toString();
+			   } catch (Exception e) {
+			     return;
+			   }
+		 
+		 editText_password.clearComposingText();
+		 TouchUtils.tapView(this, editText_password);
+		 sendKeys("cidadao");
+		 TouchUtils.clickView(this, editText_password);
+		 String password;
+		 
+		 try {
+			   // getting the input from the TextView reference
+			 password = editText_password.getText().toString();
+			   } catch (Exception e) {
+			     return;
+			   }
+	}
+	
+	
 	
 }
