@@ -122,6 +122,7 @@ public class LoginFragment extends FragmentView
 		public void onClick(View _view)
 		{
 			Util.debug("VISISTANTE PUSHED!!!");
+			mainActivity.displayFragment(ViewObserverInterface.HOME);
 		}
 	}
 	

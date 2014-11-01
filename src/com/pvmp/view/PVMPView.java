@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.pvmp.util.MessageHandling;
 import com.pvmp.util.Util;
 import com.pvmp.models.User;
 import com.pvmp.view.adapter.NavigationDrawerAdapter;
@@ -271,14 +272,29 @@ public class PVMPView extends Activity implements ViewObserverInterface
 				fragment = new PartyFragment();
 				break;
 			case FEEDBACK:
-				fragment = new FeedBackFragment();
+				if (user.getAge() != 0) 
+				{
+					fragment = new FeedBackFragment();
+				}
+				else 
+				{
+					MessageHandling.showToast(MessageHandling.ERROR_LOGIN, getApplicationContext());
+				}
+				
 				break;
 			case SETTING:
-				fragment = new SettingsFragment();
+				if (user.getAge() != 0) 
+				{
+					fragment = new SettingsFragment();
+				}
+				else 
+				{
+					MessageHandling.showToast(MessageHandling.ERROR_LOGIN, getApplicationContext());
+				}
 				break;
 			case LOGOUT:
 				this.updateUser(this.controller.openSession());
-				if (user != null) 
+				if (user.getAge() != 0) 
 				{
 					user.setDefaultUser("N");
 					this.controller.editUser(user);
