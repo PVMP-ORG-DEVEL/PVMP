@@ -114,7 +114,7 @@ public class PVMPController implements ControllerInterface
 	public User openSession()
 	{
 		Util.debug("PVMPController: openSession");
-		User user = this.model.getDefaultUser();
+		User user = this.model.getUser("default_user","S");
 		if(user == null)
 		{
 			Util.debug("PVMPController: getDefaultUser Problem");
