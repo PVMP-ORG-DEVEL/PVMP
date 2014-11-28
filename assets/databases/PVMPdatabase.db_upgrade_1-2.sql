@@ -3,4 +3,6 @@ CREATE TABLE PropositionFeedback (
  id_prop INTEGER NOT NULL,
  opinion TEXT NOT NULL,
  CONSTRAINT PropositionFeedback_pk PRIMARY KEY (user_name, id_prop)
-)
+);
+
+ALTER TABLE User ADD password TEXT
